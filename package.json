@@ -1,0 +1,6 @@
+{
+  "name": "moyin-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {"build": "node scripts/sync-assets.mjs", "dev": "node scripts/serve.mjs"}
+}
