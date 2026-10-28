@@ -1,0 +1,114 @@
+/* ============================================================
+   TYPOGRAPHY
+   Text utility classes, headings, and inline highlights.
+   ============================================================ */
+
+/* Muted text (secondary color) */
+.muted {
+  color: #727a75;
+}
+
+/* Green accent text */
+.green {
+  color: var(--green);
+}
+
+/* ---- Wordmark / logo ---- */
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: .04em;
+}
+
+/* The "m_" monogram */
+.mark {
+  font-family: var(--mono);
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: -10px;
+  width: 47px;
+  font-weight: 500;
+  color: var(--bright);
+}
+.mark span {
+  color: #3b6e4e;
+}
+
+/* "SECURITY RESEARCHER" subtitle */
+.wordmark-sub {
+  display: block;
+  font: 7px var(--mono);
+  letter-spacing: .12em;
+  color: #8d968f;
+  margin-top: 5px;
+}
+
+/* ---- Headings ---- */
+h2 {
+  font-size: 44px;
+  line-height: 1.18;
+  font-weight: 450;
+  letter-spacing: -.045em;
+  margin: 0;
+}
+
+/* Hero "offensive" pixel-style text */
+.pixel-word {
+  color: #f0f5f1;
+  text-shadow: 1px 0 #ffffff30, -1px 0 #ffffff30;
+}
+
+/* ---- Small label / eyebrow ---- */
+.eyebrow {
+  font: 10px var(--mono);
+  letter-spacing: .14em;
+  color: #98a59d;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Pulsing green dot (status indicator) */
+.status-dot {
+  height: 5px;
+  width: 5px;
+  background: #48a46a;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #26844588;
+  display: inline-block;
+}
+
+/* Inline code-style highlight */
+.inline-highlight {
+  color: #88b795;
+  background: #0d1d12;
+  padding: 1px 7px;
+  border-radius: 3px;
+}
+
+/* Arrow-style text link */
+.text-link {
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  color: #b7c9bc;
+  padding: 10px 0;
+}
+.text-link:hover {
+  color: #74c38e;
+}
+
+/* Noscript fallback */
+.noscript-note {
+  padding: 30px;
+  color: #a5b5aa;
+}
+
+/* Hidden on desktop, shown on mobile */
+.mobile-break {
+  display: none;
+}

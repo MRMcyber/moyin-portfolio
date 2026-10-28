@@ -1,0 +1,148 @@
+/* ============================================================
+   PROJECTS SECTION
+   Tab-based showcase with preview panel and empty state.
+   ============================================================ */
+
+.project-showcase {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  border: 1px solid var(--line);
+}
+
+/* ---- Left sidebar: project tabs ---- */
+.project-tabs {
+  border-right: 1px solid var(--line);
+  background: #020403;
+}
+
+.project-tab {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  padding: 28px 23px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  text-align: left;
+  color: #7f8a83;
+}
+
+/* Active / selected tab */
+.project-tab[aria-selected=true] {
+  background: linear-gradient(90deg, #08170d, transparent);
+  color: #e5eee8;
+  box-shadow: inset 2px 0 #307746;
+}
+
+.project-tab > span {
+  font: 10px var(--mono);
+  padding-top: 3px;
+  color: #557260;
+}
+.project-tab strong {
+  font-size: 14px;
+  font-weight: 450;
+  display: block;
+}
+.project-tab small {
+  display: block;
+  font-size: 12px;
+  color: #78857c;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+/* ---- Right panel: image preview ---- */
+.project-preview {
+  min-height: 370px;
+  padding: 28px;
+  background-color: #030604;
+  background-image: radial-gradient(#1c3122 1px, transparent 1px);
+  background-size: 11px 11px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Clickable image button */
+.project-image-button {
+  background: #090d0a;
+  border: 1px solid #27382c;
+  border-radius: 7px;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  box-shadow: 0 16px 60px #000;
+}
+.project-image-button img {
+  display: block;
+  width: 100%;
+  max-height: 450px;
+  object-fit: contain;
+}
+
+/* ---- Empty state (no projects yet) ---- */
+.project-empty {
+  width: 100%;
+  background: #080d0a;
+  border: 1px solid #213027;
+  border-radius: 7px;
+  box-shadow: 0 15px 60px #000;
+  max-width: 630px;
+}
+
+/* Fake window title bar */
+.window-bar {
+  padding: 12px 16px;
+  border-bottom: 1px solid #1b2920;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #718178;
+  font: 9px var(--mono);
+}
+.window-bar i {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #344b3c;
+}
+.window-bar span {
+  margin-left: auto;
+}
+
+.empty-project-content {
+  padding: 44px 35px;
+}
+.empty-project-content .terminal-symbol {
+  font: 28px var(--mono);
+  color: #2c7e45;
+  display: block;
+  margin-bottom: 24px;
+}
+.empty-project-content h3 {
+  font-size: 23px;
+  letter-spacing: -.035em;
+  font-weight: 450;
+  line-height: 1.4;
+  margin: 0 0 15px;
+}
+.empty-project-content p {
+  font-size: 12px;
+  color: #76877c;
+  line-height: 1.6;
+  max-width: 300px;
+}
+
+/* Status bar at the bottom of the empty project card */
+.archive-state {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-top: 1px solid #1b2920;
+  font: 8px var(--mono);
+  color: #65816d;
+}

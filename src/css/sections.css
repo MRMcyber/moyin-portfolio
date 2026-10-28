@@ -1,0 +1,73 @@
+/* ============================================================
+   SHARED SECTION STYLES
+   Common layout for all page sections + discipline strip.
+   ============================================================ */
+
+.section {
+  padding-top: 100px;
+  padding-bottom: 108px;
+}
+
+/* Section label bar — e.g. "01 / ABOUT" */
+.section-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: 9px var(--mono);
+  letter-spacing: .13em;
+  color: #728076;
+  margin-bottom: 46px;
+}
+
+.small-symbol {
+  color: #54725e;
+}
+
+/* Sections with top & bottom border */
+.border-section {
+  border-block: 1px solid var(--line);
+}
+
+/* Intro block — heading left, description right */
+.section-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 45px;
+}
+.section-intro p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #79877e;
+  margin: 0 0 4px;
+  min-width: 210px;
+}
+
+/* ---- Discipline strip (horizontal bar below hero) ---- */
+.discipline-strip {
+  border-block: 1px solid var(--line);
+}
+.discipline-strip .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0 32px;
+}
+.discipline-strip .container > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 17px;
+  font-size: 15px;
+  color: #a2aaa5;
+  padding: 31px 16px;
+  border-inline-start: 1px solid var(--line);
+  min-height: 105px;
+}
+.discipline-strip .container > span:last-child {
+  border-right: 1px solid var(--line);
+}
+.discipline-strip i {
+  font: 20px var(--mono);
+  color: #58675d;
+  font-style: normal;
+}

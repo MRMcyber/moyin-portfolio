@@ -1,0 +1,87 @@
+/* ============================================================
+   CONTACT SECTION & DIALOGS
+   CTA section, modal dialogs, image lightbox.
+   ============================================================ */
+
+/* ---- Contact CTA section ---- */
+.contact-section {
+  overflow: hidden;
+}
+
+.contact-inner {
+  padding-block: 95px;
+  position: relative;
+}
+.contact-inner h2 {
+  font-size: 72px;
+  line-height: 1.1;
+  margin: 30px 0;
+}
+
+/* Large decorative "+" reticle */
+.contact-reticle {
+  position: absolute;
+  right: 100px;
+  top: 40px;
+  font: 300px var(--mono);
+  font-weight: 400;
+  color: #0e1c12;
+  transform: rotate(8deg);
+  pointer-events: none;
+}
+
+/* ---- Dialogs (contact + image lightbox) ---- */
+dialog {
+  border: 1px solid #2b3f31;
+  background: #080d0a;
+  color: #e9efeb;
+  padding: 45px;
+  max-width: 540px;
+  width: calc(100% - 32px);
+  border-radius: 9px;
+}
+dialog::backdrop {
+  background: #000d;
+  backdrop-filter: blur(8px);
+}
+dialog h2 {
+  margin: 25px 0;
+}
+dialog p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #9aa79e;
+}
+
+/* Close button (×) */
+.dialog-close {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  font-size: 28px;
+  color: #b2c2b7;
+}
+
+/* ---- Image lightbox dialog ---- */
+#image-dialog {
+  max-width: 1000px;
+  padding: 55px 20px 20px;
+}
+#full-image {
+  width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+}
+#image-caption {
+  margin: 15px 0 0;
+  text-align: center;
+}
+
+/* Lock scroll when a modal is open */
+body.modal-open {
+  overflow: hidden;
+}

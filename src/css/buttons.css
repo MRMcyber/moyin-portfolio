@@ -1,0 +1,43 @@
+/* ============================================================
+   BUTTONS
+   Primary (green gradient) and secondary (dark outline) styles.
+   ============================================================ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 13px 20px;
+  border-radius: 6px;
+  font-size: 12px;
+  min-height: 46px;
+  font-weight: 550;
+  transition: background .2s, transform .2s;
+  border: 1px solid transparent;
+}
+.button:hover {
+  transform: translateY(-2px);
+}
+
+/* Primary — green gradient CTA */
+.primary {
+  background: linear-gradient(180deg, #176536, #104c29);
+  border-color: #2c7a47;
+  color: #e9f4ed;
+  box-shadow: inset 0 1px #a1d9ad15;
+}
+.primary:hover {
+  background: #216f3e;
+}
+
+/* Secondary — dark outline */
+.secondary {
+  background: #050706;
+  border-color: #212a24;
+  color: #aab4ad;
+}
+.secondary:hover {
+  border-color: #435c4b;
+  color: #fff;
+}

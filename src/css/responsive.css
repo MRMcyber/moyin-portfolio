@@ -1,0 +1,243 @@
+/* ============================================================
+   RESPONSIVE & MEDIA QUERIES
+   Breakpoints: 1600px, 1100px, 760px, reduced-motion.
+   ============================================================ */
+
+/* ---- Extra-large screens (1600px+) ---- */
+@media (min-width: 1600px) {
+  .hero-art {
+    right: calc((100vw - 1600px) / 2 - 140px);
+  }
+}
+
+/* ---- Medium screens (761px – 1100px) ---- */
+@media (min-width: 761px) and (max-width: 1100px) {
+  nav { gap: 24px; }
+  .nav-inner { grid-template-columns: auto 1fr auto; }
+  .hero h1 { font-size: 62px; }
+  .hero-art { right: -360px; }
+  .hero-description { max-width: 490px; }
+}
+
+@media (max-width: 1100px) {
+  .about-grid { gap: 60px; }
+  .project-showcase { grid-template-columns: 280px 1fr; }
+}
+
+/* ---- Mobile (≤ 760px) ---- */
+@media (max-width: 760px) {
+
+  /* Container & wordmark shrink */
+  .container,
+  .wordmark-sub { font-size: 6px; }
+  .wordmark { font-size: 14px; }
+  .mark { font-size: 33px; width: 41px; }
+
+  /* Hamburger menu appears */
+  .menu-toggle {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: 1px solid #223027;
+    border-radius: 5px;
+  }
+  .menu-toggle span {
+    width: 17px;
+    height: 1px;
+    background: #c5d1c9;
+  }
+  /* Animate into ✕ when open */
+  .menu-toggle[aria-expanded=true] span:first-child {
+    transform: translateY(3.5px) rotate(45deg);
+  }
+  .menu-toggle[aria-expanded=true] span:last-child {
+    transform: translateY(-3.5px) rotate(-45deg);
+  }
+
+  /* Mobile nav dropdown */
+  nav.open {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  nav > a {
+    padding: 17px 2px;
+    border-bottom: 1px solid #19231c;
+    font-size: 17px;
+  }
+
+  /* Hide decorative globe labels */
+  .globe-label,
+  .coordinate { display: none; }
+
+  /* Smaller buttons */
+  .button { padding: 13px 15px; gap: 16px; font-size: 11px; }
+
+  /* Smaller eyebrow */
+  .eyebrow { font-size: 8px; letter-spacing: .1em; }
+
+  /* Hero bottom */
+  .hero-bottom > span { font-size: 7px; }
+  .hero-bottom > a { display: none; }
+
+  /* Discipline strip — vertical labels */
+  .discipline-strip .container {
+    padding: 0;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .discipline-strip .container > span {
+    font-size: 10px;
+    gap: 8px;
+    padding: 24px 7px;
+    flex-direction: column;
+    min-height: 90px;
+  }
+  .discipline-strip i { font-size: 18px; }
+
+  /* Section spacing */
+  .section { padding-block: 65px; }
+  .section-label { margin-bottom: 30px; font-size: 8px; }
+
+  /* Headings */
+  h2 { font-size: 34px; }
+
+  /* Stack grids to single column */
+  .about-grid,
+  .notes-grid { grid-template-columns: 1fr; gap: 28px; }
+  .about-copy { max-width: none; }
+  .about-copy p { font-size: 15px; }
+
+  /* Section intro — stack */
+  .section-intro { display: block; margin-bottom: 30px; }
+  .section-intro p { font-size: 12px; margin-top: 20px; }
+  .section-intro p br { display: none; }
+
+  /* Certifications — single column */
+  .certificate-gallery { grid-template-columns: 1fr; }
+  .empty-credentials { padding: 28px 18px; gap: 20px; }
+  .certificate-outline { width: 75px; height: 62px; padding: 9px; }
+  .certificate-outline:after { width: 52px; }
+  .empty-credentials h3 { font-size: 16px; }
+  .empty-credentials p { font-size: 12px; }
+
+  /* Projects — stack tabs above preview */
+  .project-showcase { grid-template-columns: 1fr; }
+  .project-tabs { border-right: 0; }
+  .project-tab { padding: 23px; }
+  .project-preview { min-height: 320px; padding: 18px; }
+  .empty-project-content { padding: 30px 24px; }
+  .empty-project-content h3 { font-size: 21px; }
+
+  /* Empty blocks */
+  .empty-block .index { margin-right: 4px; }
+  .empty-block h3 { font-size: 17px; }
+  .empty-block p { font-size: 12px; }
+
+  /* Contact */
+  .contact-inner { padding-block: 65px; }
+  .contact-inner h2 { font-size: 58px; }
+  .contact-reticle { font-size: 230px; right: -50px; top: 70px; z-index: -1; }
+  .contact-inner .eyebrow { max-width: 280px; line-height: 1.7; }
+
+  /* Footer */
+  .footer-meta { padding-block: 30px; font-size: 8px; gap: 16px; }
+  .footer-identity span { display: none; }
+  .footer-signature { font-size: 25vw; }
+  .footer-bottom { font-size: 6px; gap: 20px; line-height: 1.8; }
+  .footer-bottom span:last-child { gap: 6px; }
+
+  /* Dialog */
+  dialog { padding: 38px 24px; }
+
+  /* Header */
+  .site-header { height: 72px; }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 22px;
+  }
+  .desktop-contact { display: none; }
+  nav {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: #030705fa;
+    padding: 24px;
+    display: none;
+    border-bottom: 1px solid #27372b;
+    backdrop-filter: blur(20px);
+  }
+  nav.open {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .mobile-contact {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    min-height: 46px;
+  }
+
+  /* Hero — stacked layout */
+  .hero {
+    height: auto;
+    min-height: 690px;
+    max-height: none;
+    display: flex;
+    align-items: flex-start;
+  }
+  .hero-content {
+    position: relative;
+    top: auto; left: auto; right: auto;
+    transform: none;
+    padding-top: 160px;
+    padding-bottom: 130px;
+    width: 100%;
+  }
+  .hero h1 {
+    font-size: clamp(39px, 10.4vw, 60px);
+    line-height: 1.04;
+    letter-spacing: -.035em;
+    margin: 0 0 26px;
+    max-width: 100%;
+  }
+  .hero-description { font-size: 14px; line-height: 1.75; max-width: 360px; }
+  .hero-description br { display: none; }
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 28px;
+    max-width: 350px;
+  }
+  .hero-actions .button { min-height: 44px; font-size: 12px; }
+  .hero-art {
+    width: 900px;
+    height: 820px;
+    top: 65px;
+    right: -450px;
+    opacity: .55;
+    mask-image: linear-gradient(to right, transparent 10%, black 65%);
+  }
+  .hero-art:after { background: linear-gradient(90deg, #000c, transparent 70%); }
+  .hero-bottom { bottom: 14px; }
+}
+
+/* ---- Accessibility: reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *:before, *:after {
+    transition: none !important;
+    animation: none !important;
+  }
+  .button:hover { transform: none; }
+}

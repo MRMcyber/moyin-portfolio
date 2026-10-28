@@ -1,0 +1,152 @@
+/* ============================================================
+   HERO SECTION
+   Full-viewport hero with globe canvas, headline, and CTAs.
+   ============================================================ */
+
+.hero {
+  position: relative;
+  min-height: 600px;
+  height: calc(100svh - 128px);
+  max-height: 960px;
+  overflow: hidden;
+}
+
+/* ---- Hero text content (overlaid on canvas) ---- */
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-40%);
+  z-index: 2;
+  pointer-events: none;   /* Let clicks pass through to the globe */
+  padding-top: 0;
+}
+.hero-content a {
+  pointer-events: auto;   /* But buttons are clickable */
+}
+
+.hero h1 {
+  font-size: clamp(56px, 5.12vw, 73.6px);
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -.03em;
+  margin: 0 0 30px;
+  max-width: 620px;
+}
+
+.hero-description {
+  color: #989c99;
+  font-size: 16px;
+  line-height: 1.65;
+  letter-spacing: -.015em;
+  max-width: 540px;
+  margin: 0;
+}
+
+/* CTA buttons row */
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 35px;
+}
+.hero-actions .button {
+  min-height: 42px;
+  padding: 10px 17px;
+  font-size: 12px;
+  gap: 22px;
+}
+
+/* ---- Globe canvas container ---- */
+.hero-art {
+  position: absolute;
+  right: -110px;
+  top: 35px;
+  width: 1280px;
+  height: 1000px;
+  z-index: 0;
+  mask-image: linear-gradient(to right, transparent 0%, #0005 20%, black 44%);
+  opacity: 1;
+}
+
+#globe {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+/* Dark fade on the left side of the globe */
+.hero-art:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #000c, transparent 48%);
+  pointer-events: none;
+}
+
+/* ---- Bottom bar (pause motion button) ---- */
+.hero-bottom {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 3;
+  pointer-events: none;
+}
+.hero-bottom button {
+  pointer-events: auto;
+  border: 1px solid #ffffff0c;
+  border-radius: 4px;
+  background: #0008;
+  font: 9px var(--mono);
+  color: #a0a8a2;
+  min-height: 32px;
+  padding: 6px 10px;
+}
+.hero-bottom a {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.hero-bottom button span {
+  margin-left: 8px;
+}
+
+/* ---- Decorative labels on the globe (desktop only) ---- */
+.globe-label {
+  position: absolute;
+  right: 190px;
+  top: 360px;
+  background: #031308df;
+  border: 1px solid #234e2f;
+  padding: 9px 13px;
+  border-radius: 4px;
+  font: 9px var(--mono);
+  color: #8bba98;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.globe-label i {
+  height: 5px;
+  width: 5px;
+  background: #6cbe80;
+  border-radius: 50%;
+}
+
+.coordinate {
+  position: absolute;
+  font: 8px var(--mono);
+  letter-spacing: .15em;
+  color: #3e5b46;
+}
+.coordinate-a { right: 250px; top: 100px; }
+.coordinate-b { right: 110px; bottom: 75px; }
+
+.crosshair {
+  color: #4d9161;
+  font-size: 16px;
+  margin-right: 12px;
+}

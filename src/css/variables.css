@@ -1,0 +1,108 @@
+/* ============================================================
+   VARIABLES & BASE RESETS
+   Design tokens (colors, fonts) and global resets.
+   ============================================================ */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Background tiers ---- */
+  --bg:      #000;        /* Page background */
+  --surface: #080a09;     /* Card / elevated surface */
+  --raised:  #0c100e;     /* Popovers, higher elevation */
+
+  /* ---- Text ---- */
+  --text:  #eff2f0;       /* Primary text */
+  --muted: #8b918e;       /* Secondary / caption text */
+
+  /* ---- Borders ---- */
+  --line: #191e1b;        /* Subtle dividers */
+
+  /* ---- Accent (green) ---- */
+  --green:  #238b50;      /* Primary accent */
+  --bright: #67b883;      /* Bright / highlight accent */
+
+  /* ---- Fonts ---- */
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'Geist', Arial, sans-serif;
+}
+
+/* ---- Universal reset ---- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Remove tap highlights on mobile */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, input {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  color: inherit;
+}
+
+button, a {
+  touch-action: manipulation;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+/* Focus ring (accessibility) */
+button:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--bright);
+  outline-offset: 6px;
+}
+
+/* Text selection */
+::selection {
+  background: #14532c;
+  color: white;
+}
+
+/* ---- Layout container ---- */
+.container {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 32px;
+}
+
+/* Skip-to-content link (accessibility) */
+.skip-link {
+  position: fixed;
+  top: -80px;
+  left: 12px;
+  background: var(--green);
+  padding: 15px;
+  z-index: 100;
+}
+.skip-link:focus {
+  top: 10px;
+}

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="MOYIN — Penetration Tester and Security Researcher. Explore the work, research, and notes of OxShaD.">
+  <title>MOYIN / OxShaD — Security Researcher</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;450;500;550;600;650;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <!-- ======= SKIP LINK (accessibility) ======= -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ======= HEADER / NAV ======= -->
+  <header class="site-header">
+    <div class="nav-inner">
+
+      <!-- Logo / wordmark -->
+      <a class="wordmark" href="#" aria-label="MOYIN home">
+        <span class="mark" aria-hidden="true">m<span>_</span></span>
+        <span>MOYIN<span class="wordmark-sub">SECURITY RESEARCHER</span></span>
+      </a>
+
+      <!-- Mobile hamburger toggle -->
+      <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Main navigation links -->
+      <nav id="main-nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#writeups">Writeups</a>
+        <a href="#projects">Projects</a>
+        <a href="#notes">Notes</a>
+        <button class="nav-contact mobile-contact contact-trigger">Contact me <span aria-hidden="true">↗</span></button>
+      </nav>
+
+      <!-- Desktop contact button -->
+      <button class="nav-contact desktop-contact contact-trigger">Contact me <span aria-hidden="true">↗</span></button>
+
+    </div>
+  </header>
+
+  <!-- ======= MAIN CONTENT ======= -->
+  <main id="main">
+
+    <!-- ======= HERO ======= -->
+    <section class="hero" aria-labelledby="hero-title">
+      <!-- Globe canvas background -->
+      <div class="hero-art" aria-hidden="true">
+        <canvas id="globe"></canvas>
+      </div>
+
+      <div class="container hero-content">
+        <h1 id="hero-title">A curious mind.<br>An <span class="pixel-word">offensive</span><br>perspective<span class="green">.</span></h1>
+        <p class="hero-description">I'm MOYIN, a Penetration Tester &amp; Security Researcher.<br>Exploring how things work. Questioning how they break.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
+          <a class="button secondary" href="#about">A little about me <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+
+      <!-- Motion toggle at the bottom of the hero -->
+      <div class="hero-bottom container">
+        <button id="motion-toggle" aria-pressed="false">Pause motion <span aria-hidden="true">Ⅱ</span></button>
+      </div>
+    </section>
+
+    <!-- ======= DISCIPLINE STRIP ======= -->
+    <div class="discipline-strip" aria-label="Areas of focus">
+      <div class="container">
+        <span><i aria-hidden="true">⌘</i> Penetration testing</span>
+        <span><i aria-hidden="true">⌁</i> Security research</span>
+        <span><i aria-hidden="true">&lt;/&gt;</i> Breaking assumptions</span>
+      </div>
+    </div>
+
+    <!-- ======= ABOUT ======= -->
+    <section id="about" class="about section container">
+      <div class="section-label">
+        <span>01 / ABOUT</span>
+        <span class="small-symbol" aria-hidden="true">[ + ]</span>
+      </div>
+      <div class="about-grid">
+        <h2>There's always<br>another way <span class="muted">in.</span></h2>
+        <div class="about-copy">
+          <p>I'm <strong>MOYIN</strong>, a Penetration Tester and Security Researcher. You can also call me <span class="inline-highlight">OxShaD</span>.</p>
+          <p>This is my corner of the internet: a place for the work, the research, and the notes along the way.</p>
+          <a class="text-link" href="#writeups">Follow the thinking <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= CERTIFICATIONS ======= -->
+    <section id="certifications" class="section credentials border-section">
+      <div class="container">
+        <div class="section-label">
+          <span>02 / CONTINUOUS LEARNING</span>
+          <span class="small-symbol" aria-hidden="true">[ ↗ ]</span>
+        </div>
+        <div class="section-intro">
+          <h2>Knowledge earned.<br><span class="muted">Curiosity never finished.</span></h2>
+          <p>A space for the milestones<br>behind the mindset.</p>
+        </div>
+        <div id="certificate-gallery" class="certificate-gallery"></div>
+      </div>
+    </section>
+
+    <!-- ======= PROJECTS ======= -->
+    <section id="projects" class="section projects container">
+      <div class="section-label">
+        <span>03 / SELECTED PROJECTS</span>
+        <span class="small-symbol" aria-hidden="true">[ / ]</span>
+      </div>
+      <div class="section-intro">
+        <h2>Less theory.<br><span class="muted">More looking closer.</span></h2>
+        <p>Experiments, investigations,<br>and things worth building.</p>
+      </div>
+      <div class="project-showcase">
+        <div id="project-tabs" class="project-tabs" role="tablist" aria-label="Select a project"></div>
+        <div id="project-preview" class="project-preview" role="tabpanel" tabindex="0"></div>
+      </div>
+    </section>
+
+    <!-- ======= WRITEUPS ======= -->
+    <section id="writeups" class="section writing border-section">
+      <div class="container">
+        <div class="section-label">
+          <span>04 / WRITEUPS</span>
+          <span class="small-symbol" aria-hidden="true">[ # ]</span>
+        </div>
+        <div class="section-intro">
+          <h2>The interesting part?<br><span class="muted">How we got there.</span></h2>
+          <p>Research deserves<br>more than a screenshot.</p>
+        </div>
+        <div id="writeup-list" class="editorial-list"></div>
+      </div>
+    </section>
+
+    <!-- ======= FIELD NOTES ======= -->
+    <section id="notes" class="section notes container">
+      <div class="section-label">
+        <span>05 / FIELD NOTES</span>
+        <span class="small-symbol" aria-hidden="true">[ * ]</span>
+      </div>
+      <div class="notes-grid">
+        <h2>Small details.<br><span class="muted">New perspectives.</span></h2>
+        <div id="note-list" class="editorial-list"></div>
+      </div>
+    </section>
+
+    <!-- ======= CONTACT CTA ======= -->
+    <section class="contact-section border-section">
+      <div class="container contact-inner">
+        <div class="eyebrow"><span class="status-dot"></span> GOOD CONVERSATIONS START SOMEWHERE.</div>
+        <h2>Something on<br>your <span class="green">radar?</span></h2>
+        <button class="button primary contact-trigger">Let's talk <span aria-hidden="true">↗</span></button>
+        <span class="contact-reticle" aria-hidden="true">+</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======= FOOTER ======= -->
+  <footer>
+    <div class="container footer-meta">
+      <a class="footer-identity" href="#">MOYIN <span>/ SECURITY RESEARCHER</span></a>
+      <span>© <span id="year">2026</span></span>
+      <a href="#" class="back-top">BACK TO TOP <span aria-hidden="true">↑</span></a>
+    </div>
+    <a class="footer-signature" href="#" aria-label="OxShaD — back to top">OxShaD<span>.</span></a>
+    <div class="container footer-bottom">
+      <span>STAY CURIOUS. QUESTION EVERYTHING.</span>
+      <span>END OF TRANSMISSION <i></i></span>
+    </div>
+  </footer>
+
+  <!-- ======= DIALOGS ======= -->
+  <!-- Contact dialog (populated dynamically by JS) -->
+  <dialog id="contact-dialog">
+    <button class="dialog-close" aria-label="Close contact dialog">×</button>
+    <span class="eyebrow">CONTACT / MOYIN</span>
+    <h2>Let's talk<br><span class="green">security.</span></h2>
+    <div id="contact-body"></div>
+  </dialog>
+
+  <!-- Image lightbox dialog -->
+  <dialog id="image-dialog">
+    <button class="dialog-close" aria-label="Close image preview">×</button>
+    <img id="full-image" alt="">
+    <p id="image-caption"></p>
+  </dialog>
+
+  <!-- ======= NOSCRIPT FALLBACK ======= -->
+  <noscript>
+    <p class="noscript-note">Enable JavaScript to view the image galleries and contact details.</p>
+  </noscript>
+
+</body>
+</html>

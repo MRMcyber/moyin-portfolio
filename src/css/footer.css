@@ -1,0 +1,74 @@
+/* ============================================================
+   FOOTER
+   Meta bar, giant signature, and bottom status line.
+   ============================================================ */
+
+.footer-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 40px;
+  color: #717f75;
+  font: 9px var(--mono);
+}
+
+.footer-identity {
+  color: #c7d0ca;
+  font-weight: 500;
+}
+.footer-identity span {
+  font-weight: 400;
+  color: #67766b;
+  margin-left: 10px;
+}
+
+.back-top {
+  display: flex;
+  gap: 18px;
+}
+
+/* Giant "OxShaD" signature */
+.footer-signature {
+  display: block;
+  font-weight: 600;
+  font-size: clamp(90px, 23.9vw, 380px);
+  line-height: 1.05;
+  letter-spacing: -.085em;
+  text-align: center;
+  color: #0e1d13;
+  background: linear-gradient(180deg, #25452e 0%, #112618 50%, #050d08 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-right: .045em;
+  overflow: hidden;
+  transition: filter .4s;
+}
+.footer-signature:hover {
+  filter: brightness(1.5);
+}
+.footer-signature span {
+  background: #2b6a3e;
+  background-clip: text;
+}
+
+/* Bottom bar — "STAY CURIOUS" + status dot */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  font: 8px var(--mono);
+  letter-spacing: .1em;
+  color: #52695b;
+  padding-top: 16px;
+  padding-bottom: 26px;
+}
+.footer-bottom span:last-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.footer-bottom i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #438b58;
+}
