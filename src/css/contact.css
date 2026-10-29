@@ -18,6 +18,20 @@
   margin: 30px 0;
 }
 
+.contact-email {
+  position: relative;
+  z-index: 1;
+  gap: 12px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.gmail-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
 /* Large decorative "+" reticle */
 .contact-reticle {
   position: absolute;

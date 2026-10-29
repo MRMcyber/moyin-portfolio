@@ -47,7 +47,7 @@ const jsFiles = [
 
 mkdirSync(dist, { recursive: true });
 mkdirSync(resolve(dist, 'assets'), { recursive: true });
-for (const asset of ['logo.png', 'Hero.png', 'ccep-certificate.jpg']) {
+for (const asset of ['logo.png', 'Hero.png', 'ccep-certificate.jpg', 'gmail.svg']) {
   copyFileSync(resolve(project, 'images', asset), resolve(dist, 'assets', asset));
 }
 

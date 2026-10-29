@@ -9,7 +9,7 @@
  * Each key maps to a section of the site.
  */
 let content = {
-  contact: '',            // Email or URL for the contact dialog
+  contact: 'secfortress40@gmail.com', // Email or URL for the contact dialog
   certifications: [],     // Array of { title, image }
   projects: [],           // Array of { title, image, description }
   writeups: [],           // Array of { title, url, description }
@@ -35,22 +35,29 @@ document.querySelectorAll('.contact-trigger').forEach(button =>
 
     if (raw && target) {
       // Valid contact info — show link
-      const p = document.createElement('p');
-      p.textContent = 'For a conversation about security, research, or working together.';
-
       const a = document.createElement('a');
-      a.className = 'button primary';
+      a.className = 'button secondary contact-email';
       a.href = target;
       a.textContent = target.startsWith('mailto:')
         ? raw.replace(/^mailto:/, '')
         : 'Get in touch ↗';
+
+      if (target.startsWith('mailto:')) {
+        const icon = document.createElement('img');
+        icon.src = 'assets/gmail.svg';
+        icon.alt = 'Gmail';
+        icon.className = 'gmail-icon';
+        icon.width = 24;
+        icon.height = 24;
+        a.prepend(icon);
+      }
 
       if (!target.startsWith('mailto:')) {
         a.target = '_blank';
         a.rel = 'noopener noreferrer';
       }
 
-      body.append(p, a);
+      body.append(a);
     } else {
       // No contact info yet — placeholder
       const p = document.createElement('p');
