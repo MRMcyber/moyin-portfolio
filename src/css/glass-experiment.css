@@ -1,0 +1,203 @@
+/* Reversible visual experiment. Restore details: GLASS-EXPERIMENT.md. */
+body.glass-experiment {
+  --glass-edge: #ffffff22;
+  --glass-fill: linear-gradient(135deg, #18181899, #080808b8 65%, #1010108c);
+  --glass-shadow: 0 24px 70px #0009, inset 0 1px 0 #ffffff10;
+  --line: #151515;
+  --muted: #aeaeae;
+  background: #000;
+  isolation: isolate;
+}
+
+.glass-atmosphere {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+.glass-orb {
+  position: absolute;
+  width: min(65vw, 900px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff12, #ffffff04 42%, transparent 70%);
+  opacity: .25;
+  will-change: transform;
+  animation: glass-drift 20s ease-in-out infinite alternate;
+}
+.glass-orb-one { top: -22%; left: -18%; }
+.glass-orb-two { right: -20%; top: 14%; animation-delay: -9s; animation-duration: 25s; }
+.glass-orb-three { left: 18%; bottom: -55%; animation-delay: -15s; }
+.glass-grid {
+  position: absolute;
+  inset: -72px;
+  background-image: linear-gradient(#ffffff09 1px, transparent 1px), linear-gradient(90deg, #ffffff09 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: .28;
+  mask-image: radial-gradient(ellipse at center, #000, transparent 72%);
+  animation: glass-grid-drift 30s linear infinite;
+}
+@keyframes glass-drift { to { transform: translate(75px, 55px) scale(1.18); } }
+@keyframes glass-grid-drift { to { transform: translate(72px, 72px); } }
+
+.glass-experiment .site-header {
+  position: fixed;
+  inset: 18px 24px auto;
+  max-width: 1280px;
+  margin-inline: auto;
+  height: 70px;
+  border: 1px solid var(--glass-edge);
+  border-radius: 20px;
+  background: var(--glass-fill);
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  box-shadow: var(--glass-shadow);
+  transition: background .5s, box-shadow .5s;
+}
+.glass-experiment .nav-inner { padding-inline: 24px; }
+.glass-experiment nav > a { position: relative; color: #c5c5c5; transition: color .3s, text-shadow .3s; }
+.glass-experiment nav > a:hover { color: #f8f8f8; text-shadow: 0 0 18px #e4e4e48c; }
+.glass-experiment .nav-contact { border: 1px solid #fff; background: #fff; color: #101511; border-radius: 12px; box-shadow: inset 0 1px #ffffff21; }
+.glass-experiment .nav-contact:hover { background: #eef0ef; }
+.glass-experiment .hero { min-height: 600px; }
+/* Keep the portrait in front, with the motion control accessible. */
+.glass-experiment .hero-portrait { z-index: 3; }
+.glass-experiment .hero-bottom { z-index: 4; }
+.glass-experiment .hero h1 { text-shadow: none; animation: glass-rise 1.1s cubic-bezier(.16,1,.3,1) both; }
+.glass-experiment .hero-description { color: #b7b7b7; animation: glass-rise 1.1s .15s cubic-bezier(.16,1,.3,1) both; }
+.glass-experiment .hero-actions { animation: glass-rise 1.1s .3s cubic-bezier(.16,1,.3,1) both; }
+.glass-experiment .hero-art { opacity: .2; }
+.glass-experiment .green { color: var(--green); text-shadow: none; }
+.glass-experiment .muted { color: #9b9b9b; }
+.glass-experiment .button {
+  border-radius: 12px;
+  border-color: #f4f4f432;
+  box-shadow: inset 0 1px #ffffff1a, 0 8px 28px #00000033;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s, background .35s, border-color .35s;
+}
+.glass-experiment .primary { background: linear-gradient(180deg, #176536, #104c29); border-color: #2c7a47; }
+.glass-experiment .secondary { background: var(--glass-fill); }
+.glass-experiment .button:hover { transform: translate(var(--magnet-x, 0px), var(--magnet-y, -4px)) scale(1.035); border-color: #efefef75; box-shadow: 0 14px 35px #00000044, 0 0 0 transparent, inset 0 1px #ffffff30; }
+.glass-experiment .discipline-strip { background: #000; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: inset 0 1px #ffffff05; }
+.glass-experiment .discipline-group > span { color: #d0d0d0; }
+.glass-experiment .discipline-strip i { color: #d1d1d1; }
+.glass-experiment .section-label { color: #b1b1b1; }
+
+.glass-experiment .about-copy,
+.glass-experiment .archive-preview,
+.glass-experiment .project-showcase,
+.glass-experiment .archive-entry,
+.glass-experiment .archive-certificate,
+.glass-experiment .contact-inner {
+  border: 1px solid var(--glass-edge);
+  border-radius: 24px;
+  background: var(--glass-fill);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  box-shadow: var(--glass-shadow);
+}
+.glass-experiment .about-copy { padding: 34px; }
+.glass-experiment .about-copy p { color: #bcbcbc; }
+.glass-experiment .certificate-gallery { border: 0; }
+.glass-experiment .archive-preview { padding: 38px; }
+.glass-experiment .archive-preview:hover { background-color: #000; box-shadow: 0 28px 70px #00000055, inset 0 1px #ffffff0c, 0 0 0 transparent; }
+.glass-experiment .project-showcase { overflow: hidden; }
+.glass-experiment .project-tabs { background: #000; }
+.glass-experiment .project-preview { background-color: #000; background-image: radial-gradient(#aeaeae29 1px, transparent 1px); }
+.glass-experiment .project-empty { background: #000; border-color: #f2f2f229; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 16px; }
+.glass-experiment .empty-project-content p, .glass-experiment .project-tab small { color: #b1b1b1; }
+.glass-experiment .editorial-list { border: 0; display: grid; gap: 16px; }
+.glass-experiment .entry-link {
+  position: relative;
+  padding: 25px;
+  border: 1px solid var(--glass-edge);
+  border-radius: 18px;
+  background: var(--glass-fill);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: inset 0 1px #ffffff05;
+  transition: border-color .4s, background .4s, transform .4s;
+}
+.glass-experiment .entry-link:hover { background-color: #000; border-color: #f1f1f166; transform: translateX(6px); }
+.glass-experiment .brand-mark { background: #000; border-color: #f2f2f224; box-shadow: inset 0 1px #ffffff13; }
+.glass-experiment .credential-badge { background: transparent; border: 0; box-shadow: none; }
+.glass-experiment .contact-section { border: 0; padding: 30px 24px 80px; overflow: visible; }
+.glass-experiment .contact-inner { padding: 65px; overflow: hidden; }
+.glass-experiment .contact-reticle { color: #e9e9e918; text-shadow: 0 0 60px #e3e3e319; animation: glass-reticle 18s linear infinite; }
+.glass-experiment dialog { background: var(--glass-fill); border-color: #f5f5f53d; border-radius: 24px; backdrop-filter: blur(35px); -webkit-backdrop-filter: blur(35px); box-shadow: var(--glass-shadow); }
+.glass-experiment dialog[open] { animation: glass-dialog .5s cubic-bezier(.16,1,.3,1) both; }
+.glass-experiment dialog::backdrop { background: #0a0a0ab8; backdrop-filter: blur(10px); }
+.glass-experiment .footer-signature { background-image: linear-gradient(150deg, #141414, #080808 60%, #020202); }
+.glass-experiment .footer-meta { color: #b0b0b0; }
+.glass-experiment .archive-main { padding-top: 140px; }
+.glass-experiment .archive-heading h1 { animation: glass-rise 1s cubic-bezier(.16,1,.3,1) both; }
+.glass-experiment .archive-card-copy p, .glass-experiment .archive-entry p { color: #bbbbbb; }
+.glass-experiment .archive-entry-meta { color: #c7c7c7; }
+.archive-heading-tools { display: grid; justify-items: end; gap: 16px; }
+.glass-motion-control { padding: 9px 12px; border-radius: 10px; border: 1px solid var(--glass-edge); background: #000; color: #bfbfbf; font: 10px var(--mono); }
+.glass-experiment .hero-bottom button { background: #000; border-color: #f7f7f726; border-radius: 8px; backdrop-filter: blur(14px); }
+
+/* Pointer lighting and tilt sit on cards, leaving the hero gaze untouched. */
+.glass-tilt { position: relative; transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transition: transform .55s cubic-bezier(.16,1,.3,1), box-shadow .5s; }
+.glass-tilt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(460px circle at var(--shine-x, 50%) var(--shine-y, 30%), #ffffff06, transparent 60%);
+  opacity: 0;
+  transition: opacity .5s;
+}
+.glass-tilt:hover::after { opacity: 1; }
+.glass-experiment .glass-tilt:hover { transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-5px); }
+.glass-reveal { opacity: 0; translate: 0 40px; transition: opacity 1s var(--reveal-delay, 0ms), translate 1s cubic-bezier(.16,1,.3,1) var(--reveal-delay, 0ms); }
+.glass-reveal.is-revealed, .glass-reveal:focus-within { opacity: 1; translate: 0 0; }
+.glass-experiment main { transition: opacity .18s ease; }
+.glass-experiment.glass-leaving main { opacity: 0; }
+@keyframes glass-rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes glass-dialog { from { opacity: 0; transform: translateY(25px) scale(.94); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes glass-reticle { to { transform: rotate(368deg); } }
+
+.glass-motion-paused *, .glass-motion-paused *::before, .glass-motion-paused *::after { animation-play-state: paused !important; }
+.glass-background-paused .glass-atmosphere * { animation-play-state: paused !important; }
+.glass-motion-paused .glass-reveal { opacity: 1; translate: none; transition: none; }
+.glass-motion-paused .glass-tilt, .glass-motion-paused .button { transform: none !important; }
+.glass-motion-paused .hero h1, .glass-motion-paused .hero-description,
+.glass-motion-paused .hero-actions, .glass-motion-paused .archive-heading h1,
+.glass-motion-paused dialog[open] { animation: none !important; }
+
+@media (min-width: 761px) {
+  .glass-experiment .hero { height: calc(100svh - 192px); max-height: 896px; }
+}
+@media (max-width: 1100px) {
+  .glass-experiment .nav-inner { padding-inline: 18px; }
+  .glass-experiment nav { gap: 20px; }
+  .glass-experiment .contact-inner { padding: 48px; }
+}
+@media (max-width: 760px) {
+  .glass-experiment .site-header { inset: 12px 12px auto; height: 64px; border-radius: 16px; }
+  .glass-experiment .nav-inner { padding-inline: 14px; }
+  .glass-experiment nav { top: 76px; border: 1px solid var(--glass-edge); border-radius: 18px; background: #000; box-shadow: 0 24px 60px #00000088; backdrop-filter: blur(26px); -webkit-backdrop-filter: blur(26px); }
+  .glass-experiment .hero-content { padding-top: 122px; padding-bottom: 20px; }
+  .glass-experiment .hero-portrait { margin-top: 12px; margin-bottom: 50px; }
+  .glass-orb { width: 110vw; opacity: .2; }
+  .glass-experiment .about-copy { padding: 26px; }
+  .glass-experiment .archive-preview { padding: 24px 18px; gap: 18px; }
+  .glass-experiment .entry-link { padding: 20px 16px; gap: 14px; }
+  .glass-experiment .entry-link:hover { transform: none; }
+  .glass-experiment .contact-section { padding: 12px 12px 55px; }
+  .glass-experiment .contact-inner { padding: 34px 20px; }
+  .glass-experiment .contact-inner h2 { font-size: clamp(42px, 12vw, 58px); }
+  .glass-experiment .archive-main { padding-top: 118px; }
+  .archive-heading-tools { justify-items: start; gap: 10px; }
+  .glass-tilt, .glass-experiment .glass-tilt:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glass-experiment *, .glass-experiment *::before, .glass-experiment *::after { animation: none !important; transition: none !important; }
+  .glass-reveal { opacity: 1; translate: none; }
+  .glass-tilt, .glass-experiment .glass-tilt:hover, .glass-experiment .button:hover, .glass-experiment .entry-link:hover { transform: none !important; }
+}

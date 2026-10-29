@@ -33,6 +33,7 @@ const cssFiles = [
   'css/archives.css',
   'css/responsive.css',
   'css/cursor.css',
+  'css/glass-experiment.css',
 ];
 
 const jsFiles = [
@@ -42,6 +43,7 @@ const jsFiles = [
   'js/content.js',
   'js/globe.js',
   'js/hero-portrait.js',
+  'js/glass-experiment.js',
 ];
 
 /* ---- Build ---- */
@@ -75,7 +77,7 @@ copyFileSync(resolve(root, 'data/content.json'), resolve(dist, 'content.json'));
 console.log('  ✓ content.json');
 
 // Archive pages share navigation but do not load homepage-only animations.
-writeFileSync(resolve(dist, 'archive.js'), ['js/utils.js', 'js/navigation.js', 'js/dialogs.js']
+writeFileSync(resolve(dist, 'archive.js'), ['js/utils.js', 'js/navigation.js', 'js/dialogs.js', 'js/glass-experiment.js']
   .map(f => readFileSync(resolve(root, f), 'utf8')).join('\n'));
 await import('../scripts/sync-assets.mjs');
 await import('../scripts/build-archives.mjs');
