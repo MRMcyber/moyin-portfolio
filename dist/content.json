@@ -1,7 +1,40 @@
 {
   "contact": "",
-  "certifications": [],
+  "certifications": [
+    {
+      "id": "ccep",
+      "title": "CCEP",
+      "description": "Certified Cybersecurity Educator Professional",
+      "issuer": "Red Team Leaders",
+      "date": "March 30, 2026",
+      "image": "assets/ccep-certificate.jpg",
+      "url": "https://courses.redteamleaders.com/exam-completion/0805c41717208dc5"
+    }
+  ],
   "projects": [],
-  "writeups": [],
-  "notes": []
+  "writeups": [
+    {
+      "id": "two-critical-vulnerabilities",
+      "title": "How I Found 2 Critical Vulnerabilities in One of Nigeria’s Largest Institutions",
+      "description": "A security research writeup from my notebook.",
+      "source": "MOYIN / NOTION",
+      "url": "https://mature-brand-6cc.notion.site/How-I-Found-2-Critical-Vulnerabilities-in-One-of-Nigeria-s-Largest-Institutions-3923eb37955980ef8562ee6a4343afaf?pvs=74"
+    }
+  ],
+  "notes": [
+    {
+      "id": "htb-notes",
+      "title": "HTB notes",
+      "description": "My Hack The Box notes, collected in one place.",
+      "source": "MY NOTES / NOTION",
+      "url": "https://mature-brand-6cc.notion.site/HTB-notes-35e3eb37955980b98313f92bfcb6e292?pvs=74"
+    },
+    {
+      "id": "pentesting-methodology",
+      "title": "Pentesting methodology",
+      "description": "The HackTricks pentesting methodology: an external reference for the testing process.",
+      "source": "EXTERNAL REFERENCE / HACKTRICKS",
+      "url": "https://hacktricks.wiki/en/generic-methodologies-and-resources/pentesting-methodology.html"
+    }
+  ]
 }

@@ -30,6 +30,7 @@ const cssFiles = [
   'css/content.css',
   'css/contact.css',
   'css/footer.css',
+  'css/archives.css',
   'css/responsive.css',
 ];
 
@@ -46,7 +47,7 @@ const jsFiles = [
 
 mkdirSync(dist, { recursive: true });
 mkdirSync(resolve(dist, 'assets'), { recursive: true });
-for (const asset of ['logo.png', 'Hero.png']) {
+for (const asset of ['logo.png', 'Hero.png', 'ccep-certificate.jpg']) {
   copyFileSync(resolve(project, 'images', asset), resolve(dist, 'assets', asset));
 }
 
@@ -71,5 +72,11 @@ console.log('  ✓ index.html');
 // Copy content data
 copyFileSync(resolve(root, 'data/content.json'), resolve(dist, 'content.json'));
 console.log('  ✓ content.json');
+
+// Archive pages share navigation but do not load homepage-only animations.
+writeFileSync(resolve(dist, 'archive.js'), ['js/utils.js', 'js/navigation.js', 'js/dialogs.js']
+  .map(f => readFileSync(resolve(root, f), 'utf8')).join('\n'));
+await import('../scripts/sync-assets.mjs');
+await import('../scripts/build-archives.mjs');
 
 console.log('\n  Build complete → dist/\n');

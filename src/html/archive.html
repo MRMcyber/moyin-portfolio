@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="{{description}}">
+  <title>{{title}} — MOYIN / OxShaD</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;450;500;550;600;650;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="archive.js" defer></script>
+</head>
+<body class="archive-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a class="wordmark" href="index.html" aria-label="MOYIN home">
+        <img class="site-logo" src="assets/logo.png" alt="" width="46" height="46">
+        <span>MOYIN<span class="wordmark-sub">SECURITY RESEARCHER</span></span>
+      </a>
+      <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav"><span></span><span></span></button>
+      <nav id="main-nav" aria-label="Main navigation">{{navigation}}</nav>
+      <a class="nav-contact desktop-contact" href="index.html">Back home <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main id="main" class="container archive-main">
+    <a class="text-link archive-back" href="index.html#{{key}}"><span aria-hidden="true">←</span> Back to the portfolio</a>
+    <div class="archive-heading">
+      <div>
+        <p class="eyebrow">{{eyebrow}}</p>
+        <h1>{{title}}<span class="green">.</span></h1>
+        <p class="archive-description">{{description}}</p>
+      </div>
+      <span class="archive-count">{{count}}</span>
+    </div>
+    <div class="archive-collection {{collectionClass}}">{{cards}}</div>
+    <div class="archive-explore">
+      <span class="eyebrow">KEEP EXPLORING</span>
+      <div>{{related}}</div>
+    </div>
+  </main>
+  <footer class="border-section">
+    <div class="container footer-meta">
+      <a class="footer-identity" href="index.html">MOYIN <span>/ SECURITY RESEARCHER</span></a>
+      <span>© <span id="year">2026</span></span>
+      <a href="#main" class="back-top">BACK TO TOP <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
+</body>
+</html>

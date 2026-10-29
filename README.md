@@ -6,7 +6,7 @@ Run `npm run dev` for the local preview at http://127.0.0.1:4173.
 
 ## Content
 
-Edit `dist/content.json` to add a contact email or HTTPS profile URL, certification images, projects, writeups, and notes. No credentials or project achievements have been invented. Empty collections display clear coming-soon states.
+Edit `src/data/content.json` to add a contact email or HTTPS profile URL, certification images, projects, writeups, and notes, then run `npm run build`. Homepage previews open the dedicated `certifications.html`, `writeups.html`, and `notes.html` collections. The collection pages are generated as static HTML and link to the original resources. Empty collections display clear coming-soon states.
 
 Place supplied images under `../Images/certifications/` and `../Images/projects/`, then run `npm run build`. This copies assets and adds entries without overwriting edited titles. Ambiguous image names are reported for classification. The original files stay intact. Review titles after importing.
 

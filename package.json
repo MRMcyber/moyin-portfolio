@@ -2,5 +2,5 @@
   "name": "moyin-portfolio",
   "version": "1.0.0",
   "private": true,
-  "scripts": {"start": "node start.mjs", "build": "node src/build.mjs && node scripts/sync-assets.mjs", "dev": "node scripts/serve.mjs"}
+  "scripts": {"start": "node start.mjs", "build": "node src/build.mjs", "dev": "node scripts/serve.mjs"}
 }

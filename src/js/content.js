@@ -73,33 +73,21 @@ document.querySelectorAll('.contact-trigger').forEach(button =>
  */
 function renderCertifications() {
   const gallery = $('#certificate-gallery');
-  gallery.replaceChildren();
-
-  if (!content.certifications.length) {
-    // Empty state
-    gallery.innerHTML = '<div class="empty-credentials">'
-      + '<div class="certificate-outline" aria-hidden="true"><i></i></div>'
-      + '<div>'
-      + '<span class="empty-label">THE CREDENTIAL ARCHIVE</span>'
-      + '<h3>Milestones, collected.</h3>'
-      + '<p>Certification gallery coming soon.</p>'
-      + '</div></div>';
-    return;
-  }
-
-  // Render each certification as a clickable card
-  content.certifications.forEach((item, i) => {
-    const button = document.createElement('button');
-    button.className = 'certificate-card';
-    button.innerHTML = `<div class="cert-meta">`
-      + `<span>CREDENTIAL / ${String(i + 1).padStart(2, '0')}</span>`
-      + `<span aria-hidden="true">↗</span></div>`
-      + `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" loading="lazy" width="600" height="420">`
-      + `<h3>${escapeHTML(item.title)}</h3>`;
-    button.setAttribute('aria-label', 'View ' + item.title);
-    button.addEventListener('click', () => openImage(item.image, item.title));
-    gallery.append(button);
-  });
+  const preview = document.createElement('a');
+  preview.href = 'certifications.html';
+  preview.className = 'empty-credentials archive-preview';
+  preview.setAttribute('aria-label', 'Browse all certifications');
+  const count = content.certifications.length;
+  const summary = count
+    ? content.certifications.map(item => item.title).slice(0, 3).join(' / ')
+    : 'Explore the credential archive.';
+  preview.innerHTML = '<div class="certificate-outline" aria-hidden="true"><i></i></div>'
+    + '<div><span class="empty-label">THE CREDENTIAL ARCHIVE</span>'
+    + '<h3>Milestones, collected.</h3><p>' + escapeHTML(summary) + '</p>'
+    + '<span class="preview-cta">VIEW ALL CERTIFICATIONS'
+    + (count ? ' / ' + String(count).padStart(2, '0') : '') + '</span></div>'
+    + '<span class="preview-arrow" aria-hidden="true">&#8599;</span>';
+  gallery.replaceChildren(preview);
 }
 
 /**
@@ -211,10 +199,10 @@ function renderEntries(type, selector, title, description) {
   }
 
   // Render each entry as a link
-  content[type].forEach(item => {
+  content[type].slice(0, 3).forEach((item, index) => {
     const a = document.createElement('a');
     a.className = 'entry-link';
-    a.href = safeURL(item.url) || '#' + type;
+    a.href = type + '.html#' + encodeURIComponent(item.id || type + '-' + (index + 1));
     a.innerHTML = `<div><h3>${escapeHTML(item.title)}</h3>`
       + `<p>${escapeHTML(item.description || '')}</p></div>`
       + `<span aria-hidden="true">↗</span>`;
