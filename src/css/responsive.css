@@ -14,9 +14,11 @@
 @media (min-width: 761px) and (max-width: 1100px) {
   nav { gap: 24px; }
   .nav-inner { grid-template-columns: auto 1fr auto; }
-  .hero h1 { font-size: 62px; }
+  .hero h1 { font-size: clamp(42px, 5.2vw, 57px); }
+  .hero-portrait { width: 54vw; right: 0; }
   .hero-art { right: -360px; }
-  .hero-description { max-width: 490px; }
+  .hero-description { max-width: 45%; }
+  .hero-description br { display: none; }
 }
 
 @media (max-width: 1100px) {
@@ -31,7 +33,7 @@
   .container,
   .wordmark-sub { font-size: 6px; }
   .wordmark { font-size: 14px; }
-  .mark { font-size: 33px; width: 41px; }
+  .site-logo { width: 41px; height: 41px; }
 
   /* Hamburger menu appears */
   .menu-toggle {
@@ -86,12 +88,8 @@
   .hero-bottom > span { font-size: 7px; }
   .hero-bottom > a { display: none; }
 
-  /* Discipline strip — vertical labels */
-  .discipline-strip .container {
-    padding: 0;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .discipline-strip .container > span {
+  /* Compact labels in the continuous discipline strip */
+  .discipline-group > span {
     font-size: 10px;
     gap: 8px;
     padding: 24px 7px;
@@ -194,13 +192,14 @@
     max-height: none;
     display: flex;
     align-items: flex-start;
+    flex-direction: column;
   }
   .hero-content {
     position: relative;
     top: auto; left: auto; right: auto;
     transform: none;
-    padding-top: 160px;
-    padding-bottom: 130px;
+    padding-top: 130px;
+    padding-bottom: 20px;
     width: 100%;
   }
   .hero h1 {
@@ -225,10 +224,19 @@
     height: 820px;
     top: 65px;
     right: -450px;
-    opacity: .55;
+    opacity: .12;
     mask-image: linear-gradient(to right, transparent 10%, black 65%);
   }
   .hero-art:after { background: linear-gradient(90deg, #000c, transparent 70%); }
+  .hero-portrait {
+    position: relative;
+    order: 1;
+    top: auto;
+    right: auto;
+    transform: none;
+    width: min(100%, 620px);
+    margin: 0 auto 66px;
+  }
   .hero-bottom { bottom: 14px; }
 }
 

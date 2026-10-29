@@ -46,16 +46,24 @@
 /* ---- Discipline strip (horizontal bar below hero) ---- */
 .discipline-strip {
   border-block: 1px solid var(--line);
+  overflow: hidden;
 }
-.discipline-strip .container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 0 32px;
-}
-.discipline-strip .container > span {
+.discipline-track {
   display: flex;
+  width: max-content;
+  animation: discipline-scroll 28s linear infinite;
+}
+.discipline-group {
+  display: flex;
+  flex-shrink: 0;
+  width: max(100vw, 900px);
+}
+.discipline-group > span {
+  display: flex;
+  flex: 1 0 0;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
   gap: 17px;
   font-size: 15px;
   color: #a2aaa5;
@@ -63,11 +71,24 @@
   border-inline-start: 1px solid var(--line);
   min-height: 105px;
 }
-.discipline-strip .container > span:last-child {
-  border-right: 1px solid var(--line);
-}
 .discipline-strip i {
   font: 20px var(--mono);
   color: #58675d;
   font-style: normal;
+}
+
+.discipline-strip:hover .discipline-track,
+.discipline-strip.motion-paused .discipline-track {
+  animation-play-state: paused;
+}
+
+@keyframes discipline-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .discipline-track { animation: none; }
+  .discipline-group { width: 100vw; }
+  .discipline-group > span { white-space: normal; text-align: center; }
+  .discipline-group[aria-hidden="true"] { display: none; }
 }

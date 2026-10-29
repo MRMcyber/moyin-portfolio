@@ -21,3 +21,5 @@ Entry formats:
 The canvas globe is original decorative artwork. It does not represent live traffic, attack activity, or verified geographic measurements. Motion can be paused and respects reduced-motion preferences. Galleries support keyboard navigation and native dialog image previews.
 
 Hosting configuration is stored in `.openai/hosting.json`. Sites visibility is private unless explicitly changed.
+
+The hero uses `images/Hero.png` with a WebGL depth effect in `src/js/hero-portrait.js`: the portrait and buildings drift in opposite directions while the lettering stays anchored. The original image is preserved and serves as the fallback when WebGL is unavailable. Hover or keyboard focus brightens the artwork; the motion button and reduced-motion setting also control this effect. Run `npm run build` after editing source files or replacing images.

@@ -203,6 +203,7 @@ const motion = $('#motion-toggle');
 
 function updateMotion() {
   motion.setAttribute('aria-pressed', String(paused));
+  document.querySelector('.discipline-strip').classList.toggle('motion-paused', paused);
   motion.innerHTML = paused
     ? 'Resume motion <span aria-hidden="true">▷</span>'
     : 'Pause motion <span aria-hidden="true">Ⅱ</span>';

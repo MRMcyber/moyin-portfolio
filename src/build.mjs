@@ -39,11 +39,16 @@ const jsFiles = [
   'js/dialogs.js',
   'js/content.js',
   'js/globe.js',
+  'js/hero-portrait.js',
 ];
 
 /* ---- Build ---- */
 
 mkdirSync(dist, { recursive: true });
+mkdirSync(resolve(dist, 'assets'), { recursive: true });
+for (const asset of ['logo.png', 'Hero.png']) {
+  copyFileSync(resolve(project, 'images', asset), resolve(dist, 'assets', asset));
+}
 
 // Concatenate CSS
 const css = cssFiles

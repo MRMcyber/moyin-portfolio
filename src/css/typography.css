@@ -23,18 +23,14 @@
   letter-spacing: .04em;
 }
 
-/* The "m_" monogram */
-.mark {
-  font-family: var(--mono);
-  font-size: 38px;
-  line-height: 1;
-  letter-spacing: -10px;
-  width: 47px;
-  font-weight: 500;
-  color: var(--bright);
-}
-.mark span {
-  color: #3b6e4e;
+/* Supplied site logo */
+.site-logo {
+  display: block;
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 6px;
 }
 
 /* "SECURITY RESEARCHER" subtitle */

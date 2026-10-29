@@ -132,18 +132,14 @@ a:focus-visible,
   letter-spacing: .04em;
 }
 
-/* The "m_" monogram */
-.mark {
-  font-family: var(--mono);
-  font-size: 38px;
-  line-height: 1;
-  letter-spacing: -10px;
-  width: 47px;
-  font-weight: 500;
-  color: var(--bright);
-}
-.mark span {
-  color: #3b6e4e;
+/* Supplied site logo */
+.site-logo {
+  display: block;
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 6px;
 }
 
 /* "SECURITY RESEARCHER" subtitle */
@@ -401,7 +397,8 @@ nav > a:hover {
   height: 1000px;
   z-index: 0;
   mask-image: linear-gradient(to right, transparent 0%, #0005 20%, black 44%);
-  opacity: 1;
+  opacity: .2;
+  pointer-events: none;
 }
 
 #globe {
@@ -417,6 +414,73 @@ nav > a:hover {
   inset: 0;
   background: linear-gradient(90deg, #000c, transparent 48%);
   pointer-events: none;
+}
+
+/* Original artwork with a live depth effect; the image remains the fallback. */
+.hero-portrait {
+  position: absolute;
+  z-index: 1;
+  width: min(58vw, 860px);
+  right: max(0px, calc((100vw - 1440px) / 2));
+  top: 52%;
+  transform: translateY(-46%);
+  isolation: isolate;
+  outline-offset: -12px;
+  border-radius: 24px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.portrait-scene {
+  position: relative;
+  width: 100%;
+  filter: saturate(.65) brightness(.82);
+  transition: filter 850ms cubic-bezier(.2,.7,.2,1);
+  animation: portrait-arrive 1.5s cubic-bezier(.16,1,.3,1) both;
+}
+
+.portrait-scene img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#portrait-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.portrait-ready #portrait-canvas { opacity: 1; }
+.portrait-ready #portrait-source { visibility: hidden; }
+.portrait-paused .portrait-scene { animation-play-state: paused; }
+
+.portrait-light {
+  position: absolute;
+  inset: -12%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 55% 45%, #dce8ed16, transparent 62%);
+  opacity: 0;
+  transition: opacity 850ms ease;
+}
+
+.hero-portrait:focus-visible .portrait-scene {
+  filter: saturate(0) brightness(1.35) drop-shadow(0 0 16px #e4edf51c);
+}
+.hero-portrait:focus-visible .portrait-light { opacity: 1; }
+
+@media (hover: hover) {
+  .hero-portrait:hover .portrait-scene {
+    filter: saturate(0) brightness(1.35) drop-shadow(0 0 16px #e4edf51c);
+  }
+  .hero-portrait:hover .portrait-light { opacity: 1; }
+}
+
+@keyframes portrait-arrive {
+  from { opacity: 0; transform: translateY(22px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 /* ---- Bottom bar (pause motion button) ---- */
@@ -534,16 +598,24 @@ nav > a:hover {
 /* ---- Discipline strip (horizontal bar below hero) ---- */
 .discipline-strip {
   border-block: 1px solid var(--line);
+  overflow: hidden;
 }
-.discipline-strip .container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 0 32px;
-}
-.discipline-strip .container > span {
+.discipline-track {
   display: flex;
+  width: max-content;
+  animation: discipline-scroll 28s linear infinite;
+}
+.discipline-group {
+  display: flex;
+  flex-shrink: 0;
+  width: max(100vw, 900px);
+}
+.discipline-group > span {
+  display: flex;
+  flex: 1 0 0;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
   gap: 17px;
   font-size: 15px;
   color: #a2aaa5;
@@ -551,13 +623,26 @@ nav > a:hover {
   border-inline-start: 1px solid var(--line);
   min-height: 105px;
 }
-.discipline-strip .container > span:last-child {
-  border-right: 1px solid var(--line);
-}
 .discipline-strip i {
   font: 20px var(--mono);
   color: #58675d;
   font-style: normal;
+}
+
+.discipline-strip:hover .discipline-track,
+.discipline-strip.motion-paused .discipline-track {
+  animation-play-state: paused;
+}
+
+@keyframes discipline-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .discipline-track { animation: none; }
+  .discipline-group { width: 100vw; }
+  .discipline-group > span { white-space: normal; text-align: center; }
+  .discipline-group[aria-hidden="true"] { display: none; }
 }
 
 /* ============================================================
@@ -1100,9 +1185,11 @@ body.modal-open {
 @media (min-width: 761px) and (max-width: 1100px) {
   nav { gap: 24px; }
   .nav-inner { grid-template-columns: auto 1fr auto; }
-  .hero h1 { font-size: 62px; }
+  .hero h1 { font-size: clamp(42px, 5.2vw, 57px); }
+  .hero-portrait { width: 54vw; right: 0; }
   .hero-art { right: -360px; }
-  .hero-description { max-width: 490px; }
+  .hero-description { max-width: 45%; }
+  .hero-description br { display: none; }
 }
 
 @media (max-width: 1100px) {
@@ -1117,7 +1204,7 @@ body.modal-open {
   .container,
   .wordmark-sub { font-size: 6px; }
   .wordmark { font-size: 14px; }
-  .mark { font-size: 33px; width: 41px; }
+  .site-logo { width: 41px; height: 41px; }
 
   /* Hamburger menu appears */
   .menu-toggle {
@@ -1172,12 +1259,8 @@ body.modal-open {
   .hero-bottom > span { font-size: 7px; }
   .hero-bottom > a { display: none; }
 
-  /* Discipline strip — vertical labels */
-  .discipline-strip .container {
-    padding: 0;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .discipline-strip .container > span {
+  /* Compact labels in the continuous discipline strip */
+  .discipline-group > span {
     font-size: 10px;
     gap: 8px;
     padding: 24px 7px;
@@ -1280,13 +1363,14 @@ body.modal-open {
     max-height: none;
     display: flex;
     align-items: flex-start;
+    flex-direction: column;
   }
   .hero-content {
     position: relative;
     top: auto; left: auto; right: auto;
     transform: none;
-    padding-top: 160px;
-    padding-bottom: 130px;
+    padding-top: 130px;
+    padding-bottom: 20px;
     width: 100%;
   }
   .hero h1 {
@@ -1311,10 +1395,19 @@ body.modal-open {
     height: 820px;
     top: 65px;
     right: -450px;
-    opacity: .55;
+    opacity: .12;
     mask-image: linear-gradient(to right, transparent 10%, black 65%);
   }
   .hero-art:after { background: linear-gradient(90deg, #000c, transparent 70%); }
+  .hero-portrait {
+    position: relative;
+    order: 1;
+    top: auto;
+    right: auto;
+    transform: none;
+    width: min(100%, 620px);
+    margin: 0 auto 66px;
+  }
   .hero-bottom { bottom: 14px; }
 }
 
