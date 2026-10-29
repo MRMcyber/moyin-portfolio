@@ -31,6 +31,14 @@ const escapeHTML = value =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
   );
 
+/* Decorative resource logo; the adjacent title supplies the accessible name. */
+function brandMark(item, className = 'brand-mark') {
+  if (!item?.logo) return '';
+  const logo = safeURL(item.logo);
+  if (!/^https?:/.test(logo)) return '';
+  return `<span class="${className}" aria-hidden="true"><img src="${escapeHTML(logo)}" alt="" width="40" height="40" loading="lazy"></span>`;
+}
+
 /* ============================================================
    navigation.js — Mobile Menu & Nav Behavior
    Handles the hamburger menu toggle, close-on-navigate,
@@ -190,6 +198,15 @@ document.querySelectorAll('.contact-trigger').forEach(button =>
       body.append(p);
     }
 
+    const social = document.createElement('a');
+    social.className = 'button secondary contact-social';
+    social.href = 'https://x.com/MRM_Cyber';
+    social.target = '_blank';
+    social.rel = 'noopener noreferrer';
+    social.setAttribute('aria-label', 'Follow @MRM_Cyber on X (opens in a new tab)');
+    social.innerHTML = '<img class="social-icon" src="assets/x.svg" alt="" width="22" height="22">@MRM_Cyber <span aria-hidden="true">&#8599;</span>';
+    body.append(social);
+
     openDialog($('#contact-dialog'));
   })
 );
@@ -213,7 +230,7 @@ function renderCertifications() {
   const summary = count
     ? content.certifications.map(item => item.title).slice(0, 3).join(' / ')
     : 'Explore the credential archive.';
-  preview.innerHTML = '<div class="certificate-outline" aria-hidden="true"><i></i></div>'
+  preview.innerHTML = (brandMark(content.certifications[0], 'brand-mark credential-badge') || '<div class="certificate-outline" aria-hidden="true"><i></i></div>')
     + '<div><span class="empty-label">THE CREDENTIAL ARCHIVE</span>'
     + '<h3>Milestones, collected.</h3><p>' + escapeHTML(summary) + '</p>'
     + '<span class="preview-cta">VIEW ALL CERTIFICATIONS'
@@ -335,7 +352,7 @@ function renderEntries(type, selector, title, description) {
     const a = document.createElement('a');
     a.className = 'entry-link';
     a.href = type + '.html#' + encodeURIComponent(item.id || type + '-' + (index + 1));
-    a.innerHTML = `<div><h3>${escapeHTML(item.title)}</h3>`
+    a.innerHTML = brandMark(item) + `<div class="entry-copy"><h3>${escapeHTML(item.title)}</h3>`
       + `<p>${escapeHTML(item.description || '')}</p></div>`
       + `<span aria-hidden="true">↗</span>`;
 

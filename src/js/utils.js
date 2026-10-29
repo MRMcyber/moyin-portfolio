@@ -30,3 +30,11 @@ const escapeHTML = value =>
   String(value ?? '').replace(/[&<>"']/g, c =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
   );
+
+/* Decorative resource logo; the adjacent title supplies the accessible name. */
+function brandMark(item, className = 'brand-mark') {
+  if (!item?.logo) return '';
+  const logo = safeURL(item.logo);
+  if (!/^https?:/.test(logo)) return '';
+  return `<span class="${className}" aria-hidden="true"><img src="${escapeHTML(logo)}" alt="" width="40" height="40" loading="lazy"></span>`;
+}

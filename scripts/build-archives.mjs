@@ -29,19 +29,21 @@ for (const [key, page] of Object.entries(pages)) {
     const id = escape(item.id || `${key}-${index + 1}`);
     const url = safeLink(item.url);
     const image = imageLink(item.image);
+    const logo = imageLink(item.logo);
+    const mark = logo ? `<span class="brand-mark" aria-hidden="true"><img src="${logo}" alt="" width="40" height="40" loading="lazy"></span>` : '';
     const external = url ? `href="${url}" target="_blank" rel="noopener noreferrer"` : '';
     const number = String(index + 1).padStart(2, '0');
     if (key === 'certifications') {
       return `<article class="archive-certificate" id="${id}">
         <div class="cert-meta"><span>CREDENTIAL / ${number}</span><span>${escape(item.issuer || 'CERTIFICATION')}</span></div>
         ${image ? `<a class="certificate-image-link" href="${image}" target="_blank" rel="noopener noreferrer" aria-label="Enlarge ${escape(item.title)} certificate (opens in a new tab)"><img src="${image}" alt="${escape(item.description || item.title)} certificate" width="1100" height="850" loading="lazy"><span>Enlarge certificate <span aria-hidden="true">↗</span></span></a>` : '<div class="certificate-outline" aria-hidden="true"><i></i></div>'}
-        <div class="archive-card-copy"><h2>${escape(item.title)}</h2><p>${escape(item.description)}</p>
+        <div class="archive-card-copy"><div class="credential-heading">${mark}<h2>${escape(item.title)}</h2></div><p>${escape(item.description)}</p>
         ${item.date ? `<p class="credential-date">Issued ${escape(item.date)}</p>` : ''}
         ${url ? `<a class="text-link" ${external} aria-label="View ${escape(item.title)} credential (opens in a new tab)">View credential <span aria-hidden="true">↗</span></a>` : ''}</div>
       </article>`;
     }
     return `<article class="archive-entry" id="${id}">
-      <div class="archive-entry-meta"><span>${number} / ${escape(item.source || key.toUpperCase())}</span><span aria-hidden="true">↗</span></div>
+      <div class="archive-entry-meta"><div class="resource-brand">${mark}<span>${number} / ${escape(item.source || key.toUpperCase())}</span></div><span aria-hidden="true">↗</span></div>
       <h2>${escape(item.title)}</h2><p>${escape(item.description)}</p>
       ${url ? `<a class="text-link archive-entry-link" ${external} aria-label="${key === 'writeups' ? 'Read' : 'Open'} ${escape(item.title)} (opens in a new tab)">${key === 'writeups' ? 'Read writeup' : 'Open resource'} <span aria-hidden="true">↗</span></a>` : ''}
     </article>`;

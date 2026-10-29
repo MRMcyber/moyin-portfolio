@@ -1,4 +1,23 @@
 /* Homepage previews and the full collections share the same dark visual style. */
+.brand-mark {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ffffff12;
+  border-radius: 12px;
+  background: #101712;
+}
+.brand-mark img { display: block; width: 30px; height: 30px; object-fit: contain; }
+.brand-mark.credential-badge { width: 105px; height: 92px; border: 0; background: transparent; }
+.credential-badge img { width: 100%; height: 100%; }
+.resource-brand, .credential-heading { display: flex; align-items: center; gap: 14px; }
+.resource-brand { min-width: 0; }
+.entry-copy { flex: 1; min-width: 0; }
+.archive-card-copy .brand-mark img { width: 44px; height: 44px; }
+.archive-entry-meta { align-items: center; }
 .archive-preview {
   position: relative;
   transition: transform .45s cubic-bezier(.2,.7,.2,1), background .3s, box-shadow .3s;

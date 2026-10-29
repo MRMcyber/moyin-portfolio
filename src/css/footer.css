@@ -1,3 +1,8 @@
+/* Social profile shared by the homepage and archive footers. */
+.footer-social { display: inline-flex; align-items: center; gap: 9px; padding-block: 12px; }
+.footer-social img { display: block; flex-shrink: 0; }
+.footer-social:hover { color: var(--bright); }
+
 /* ============================================================
    FOOTER
    Meta bar, giant signature, and bottom status line.

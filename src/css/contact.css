@@ -32,6 +32,17 @@
   flex-shrink: 0;
 }
 
+.contact-links, #contact-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+.contact-social { gap: 12px; }
+.social-icon { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; }
+
 /* Large decorative "+" reticle */
 .contact-reticle {
   position: absolute;

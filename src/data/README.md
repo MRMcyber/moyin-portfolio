@@ -19,6 +19,7 @@ This file drives all the dynamic content on the site.
 - `url` (string) — Original credential / verification link
 - `description` (string) — Full certification name
 - `issuer` (string) — Issuing organization
+- `logo` (string) — Optional local badge or logo path, relative to dist/
 - `date` (string) — Display date, if available
 
 ### Project object
@@ -32,6 +33,7 @@ This file drives all the dynamic content on the site.
 - `url` (string) — Link to the full writeup/note
 - `id` (string) — Stable anchor on the collection page
 - `source` (string) — Source label; distinguish your own notes from external references
+- `logo` (string) — Optional local resource logo shown on the homepage and collection cards
 
 Run `npm run build` after changes. It updates the homepage data and generates
 `certifications.html`, `writeups.html`, and `notes.html` from this collection.

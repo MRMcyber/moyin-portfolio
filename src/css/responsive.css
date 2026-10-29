@@ -144,7 +144,8 @@
   .contact-inner .eyebrow { max-width: 280px; line-height: 1.7; }
 
   /* Footer */
-  .footer-meta { padding-block: 30px; font-size: 8px; gap: 16px; }
+  .footer-meta { padding-block: 30px; font-size: 8px; gap: 16px; flex-wrap: wrap; }
+  .brand-mark.credential-badge { width: 64px; height: 64px; }
   .footer-identity span { display: none; }
   .footer-signature { font-size: 25vw; }
   .footer-bottom { font-size: 6px; gap: 20px; line-height: 1.8; }

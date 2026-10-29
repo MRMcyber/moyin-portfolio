@@ -1040,6 +1040,17 @@ nav > a:hover {
   flex-shrink: 0;
 }
 
+.contact-links, #contact-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+.contact-social { gap: 12px; }
+.social-icon { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; }
+
 /* Large decorative "+" reticle */
 .contact-reticle {
   position: absolute;
@@ -1107,6 +1118,11 @@ dialog p {
 body.modal-open {
   overflow: hidden;
 }
+
+/* Social profile shared by the homepage and archive footers. */
+.footer-social { display: inline-flex; align-items: center; gap: 9px; padding-block: 12px; }
+.footer-social img { display: block; flex-shrink: 0; }
+.footer-social:hover { color: var(--bright); }
 
 /* ============================================================
    FOOTER
@@ -1184,6 +1200,25 @@ body.modal-open {
 }
 
 /* Homepage previews and the full collections share the same dark visual style. */
+.brand-mark {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ffffff12;
+  border-radius: 12px;
+  background: #101712;
+}
+.brand-mark img { display: block; width: 30px; height: 30px; object-fit: contain; }
+.brand-mark.credential-badge { width: 105px; height: 92px; border: 0; background: transparent; }
+.credential-badge img { width: 100%; height: 100%; }
+.resource-brand, .credential-heading { display: flex; align-items: center; gap: 14px; }
+.resource-brand { min-width: 0; }
+.entry-copy { flex: 1; min-width: 0; }
+.archive-card-copy .brand-mark img { width: 44px; height: 44px; }
+.archive-entry-meta { align-items: center; }
 .archive-preview {
   position: relative;
   transition: transform .45s cubic-bezier(.2,.7,.2,1), background .3s, box-shadow .3s;
@@ -1391,7 +1426,8 @@ body.modal-open {
   .contact-inner .eyebrow { max-width: 280px; line-height: 1.7; }
 
   /* Footer */
-  .footer-meta { padding-block: 30px; font-size: 8px; gap: 16px; }
+  .footer-meta { padding-block: 30px; font-size: 8px; gap: 16px; flex-wrap: wrap; }
+  .brand-mark.credential-badge { width: 64px; height: 64px; }
   .footer-identity span { display: none; }
   .footer-signature { font-size: 25vw; }
   .footer-bottom { font-size: 6px; gap: 20px; line-height: 1.8; }
