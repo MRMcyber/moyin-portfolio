@@ -2,5 +2,6 @@
   "name": "moyin-portfolio",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://oxshad.vercel.app",
   "scripts": {"start": "node start.mjs", "build": "node src/build.mjs", "dev": "node scripts/serve.mjs"}
 }

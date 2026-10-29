@@ -23,7 +23,18 @@
     uniform sampler2D artwork;
     uniform sampler2D depthMask;
     uniform vec2 drift;
+    uniform vec2 gaze;
+    uniform vec2 artworkSize;
     varying vec2 uv;
+
+    // Keep movement inside the eye whites, below the slanted upper lids.
+    // Glasses, brows, and the rest of the face retain their original shape.
+    float eyeWeight(vec2 pixel, vec2 center, vec2 radius, float lid) {
+      float oval = 1. - smoothstep(.65, 1., length((pixel - center) / radius));
+      float belowLid = smoothstep(0., 6., pixel.y - (lid - .10 * (pixel.x - center.x)));
+      return oval * belowLid;
+    }
+
     void main() {
       float portrait = texture2D(depthMask, uv).r;
       // Buildings and portrait move in opposite directions. The lettering
@@ -32,7 +43,13 @@
       float edge = smoothstep(0., .045, uv.x) * (1. - smoothstep(.955, 1., uv.x));
       edge *= smoothstep(0., .04, uv.y) * (1. - smoothstep(.95, 1., uv.y));
       vec2 offset = drift * mix(.8, -1., portrait) * lettering * edge;
-      gl_FragColor = texture2D(artwork, uv - offset);
+      vec2 sampleUV = uv - offset;
+      vec2 pixel = sampleUV * artworkSize;
+      float eyes = max(
+        eyeWeight(pixel, vec2(800., 330.), vec2(40., 26.), 311.),
+        eyeWeight(pixel, vec2(933., 316.), vec2(34., 25.), 295.)
+      );
+      gl_FragColor = texture2D(artwork, sampleUV - gaze * eyes / artworkSize);
     }
   `;
 
@@ -66,6 +83,7 @@
   gl.enableVertexAttribArray(position);
   gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
   const drift = gl.getUniformLocation(program, 'drift');
+  const gaze = gl.getUniformLocation(program, 'gaze');
 
   // A soft depth mask follows the hat, hair, and shoulders in Hero.png.
   // This is a runtime effect map; the supplied artwork is never rewritten.
@@ -111,6 +129,8 @@
   let last = 0;
   let elapsed = 0;
   let pointerX = 0, pointerY = 0, targetX = 0, targetY = 0;
+  let cursor = null;
+  let gazeX = 0, gazeY = 0;
   const isPaused = () => toggle.getAttribute('aria-pressed') === 'true';
 
   function render(time) {
@@ -128,7 +148,24 @@
     const still = preference.matches && stopped;
     const x = still ? 0 : Math.sin(elapsed * Math.PI / 6) * .010 + pointerX * .007;
     const y = still ? 0 : Math.sin(elapsed * Math.PI / 8) * .006 + pointerY * .004;
+    if (!stopped) {
+      let lookX = 0, lookY = 0;
+      if (cursor && finePointer.matches) {
+        // Follow the drifting face, with a soft falloff outside its vicinity.
+        const dx = (cursor.x + x) * source.naturalWidth - 867;
+        const dy = (cursor.y + y) * source.naturalHeight - 322;
+        const distance = Math.hypot(dx / 205, dy / 155);
+        const fade = Math.max(0, Math.min(1, (distance - .6) / .4));
+        const proximity = 1 - fade * fade * (3 - 2 * fade);
+        lookX = Math.max(-1, Math.min(1, dx / 110)) * 8 * proximity;
+        lookY = Math.max(-1, Math.min(1, dy / 85)) * 5 * proximity;
+      }
+      const easing = 1 - Math.exp(-delta * 11);
+      gazeX += (lookX - gazeX) * easing;
+      gazeY += (lookY - gazeY) * easing;
+    }
     gl.uniform2f(drift, x, y);
+    gl.uniform2f(gaze, still ? 0 : gazeX, still ? 0 : gazeY);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
     scene.classList.add('portrait-ready');
     if (!stopped && visible && !document.hidden) frame = requestAnimationFrame(render);
@@ -155,17 +192,21 @@
     if (ready || !source.naturalWidth) return;
     texture(source, 0, 'artwork');
     texture(depth, 1, 'depthMask');
+    gl.uniform2f(gl.getUniformLocation(program, 'artworkSize'), source.naturalWidth, source.naturalHeight);
     ready = true;
     resize();
   }
 
   scene.addEventListener('pointermove', event => {
     if (!finePointer.matches || isPaused()) return;
-    const rect = scene.getBoundingClientRect();
-    targetX = ((event.clientX - rect.left) / rect.width - .5) * 2;
-    targetY = ((event.clientY - rect.top) / rect.height - .5) * 2;
+    const rect = surface.getBoundingClientRect();
+    cursor = { x: (event.clientX - rect.left) / rect.width, y: (event.clientY - rect.top) / rect.height };
+    targetX = (cursor.x - .5) * 2;
+    targetY = (cursor.y - .5) * 2;
   });
-  scene.addEventListener('pointerleave', () => { targetX = 0; targetY = 0; });
+  function resetPointer() { targetX = 0; targetY = 0; cursor = null; }
+  scene.addEventListener('pointerleave', resetPointer);
+  window.addEventListener('blur', resetPointer);
   new MutationObserver(sync).observe(toggle, { attributes: true, attributeFilter: ['aria-pressed'] });
   new IntersectionObserver(entries => { visible = entries[0].isIntersecting; sync(); }).observe(scene);
   new ResizeObserver(resize).observe(scene);
