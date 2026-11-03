@@ -250,10 +250,16 @@ let activeProject = 0;
  * @param {boolean} focus  Whether to focus the selected tab (keyboard nav)
  */
 function renderProject(index = 0, focus = false) {
+  if (focus && index === activeProject) {
+    $('#project-tab-' + index)?.focus({ preventScroll: true });
+    return;
+  }
   activeProject = index;
   const tabs = $('#project-tabs');
   const panel = $('#project-preview');
-  tabs.replaceChildren();
+  const previousHeight = panel.getBoundingClientRect().height;
+  panel.getAnimations().forEach(animation => animation.cancel());
+  if (!focus) tabs.replaceChildren();
   panel.replaceChildren();
 
   if (!content.projects.length) {
@@ -276,8 +282,8 @@ function renderProject(index = 0, focus = false) {
     return;
   }
 
-  // Build a tab button for each project
-  content.projects.forEach((item, i) => {
+  // Keep tab elements in place during selection so hover and focus stay stable.
+  if (!focus) content.projects.forEach((item, i) => {
     const button = document.createElement('button');
     button.className = 'project-tab';
     button.id = 'project-tab-' + i;
@@ -304,6 +310,11 @@ function renderProject(index = 0, focus = false) {
     });
 
     tabs.append(button);
+  });
+
+  tabs.querySelectorAll('button').forEach((button, i) => {
+    button.setAttribute('aria-selected', String(i === index));
+    button.tabIndex = i === index ? 0 : -1;
   });
 
   // Show repository details, or retain the image preview for uploaded projects.
@@ -349,9 +360,34 @@ function renderProject(index = 0, focus = false) {
     panel.append(b);
   }
 
-  // Focus the tab if triggered by keyboard
-  if (focus) $('#project-tab-' + index).focus();
+  if (focus) {
+    const motionAllowed = !matchMedia('(prefers-reduced-motion: reduce)').matches
+      && !document.documentElement.classList.contains('glass-motion-paused');
+    if (motionAllowed) {
+      const duration = 450;
+      const easing = 'cubic-bezier(.22,1,.36,1)';
+      const nextHeight = panel.getBoundingClientRect().height;
+      panel.firstElementChild?.animate([
+        { opacity: 0, transform: 'translateY(18px) scale(.97)' },
+        { opacity: 1, transform: 'translateY(0) scale(1)' }
+      ], { duration, easing });
+      if (Math.abs(previousHeight - nextHeight) > 1) {
+        panel.animate([{ height: previousHeight + 'px' }, { height: nextHeight + 'px' }], { duration, easing });
+      }
+    }
+    $('#project-tab-' + index).focus({ preventScroll: true });
+  }
 }
+
+// Finish project transitions immediately if motion is disabled mid-selection.
+function settleProjectMotion() {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches
+      || document.documentElement.classList.contains('glass-motion-paused')) {
+    $('#project-preview').getAnimations({ subtree: true }).forEach(animation => animation.finish());
+  }
+}
+matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', settleProjectMotion);
+new MutationObserver(settleProjectMotion).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
 /**
  * Render a list section (writeups or notes).
@@ -939,7 +975,7 @@ updateMotion();
     revealObserver.observe(element);
   });
 
-  const tiltSelector = '.archive-preview, .archive-entry, .archive-certificate, .project-showcase, .about-copy';
+  const tiltSelector = '.archive-preview, .archive-entry, .archive-certificate, .about-copy';
   function attachTilt(card) {
     if (card.classList.contains('glass-tilt')) return;
     card.classList.add('glass-tilt');
