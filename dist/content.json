@@ -57,7 +57,28 @@
       "id": "two-critical-vulnerabilities",
       "logo": "assets/notion.svg",
       "title": "How I Found 2 Critical Vulnerabilities in One of Nigeria’s Largest Institutions",
-      "description": "A security research writeup from my notebook.",
+      "description": "Two IDOR flaws in a student portal exposed personal profiles and academic transcripts to other authenticated students. Responsibly disclosed and published after remediation.",
+      "severity": "Critical (author-rated)",
+      "bugClass": "IDOR / Broken access control",
+      "remediation": "Remediated",
+      "remediationNote": "The published timeline states that the institution was notified and the details were released after remediation. Fix details, dates, and a CVSS score are not provided in the article.",
+      "findings": [
+        {
+          "title": "Student profile exposure",
+          "description": "A logged-in student could change a user identifier and retrieve another student's personal profile because the API did not check access to the requested record.",
+          "impact": "Exposed names, dates of birth, contact information, next-of-kin details, and academic profile data."
+        },
+        {
+          "title": "Transcript download authorization bypass",
+          "description": "The results view rejected access to another student's records, but the separate PDF download route lacked the equivalent authorization check.",
+          "impact": "An authenticated student could download another student's full academic transcript."
+        }
+      ],
+      "disclosure": [
+        "Discovered during a private security assessment",
+        "Responsibly disclosed to the institution",
+        "Published after remediation"
+      ],
       "source": "MOYIN / NOTION",
       "url": "https://mature-brand-6cc.notion.site/How-I-Found-2-Critical-Vulnerabilities-in-One-of-Nigeria-s-Largest-Institutions-3923eb37955980ef8562ee6a4343afaf?pvs=74"
     }

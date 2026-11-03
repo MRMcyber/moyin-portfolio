@@ -184,7 +184,7 @@ function openImage(src, title) {
     revealObserver.observe(element);
   });
 
-  const tiltSelector = '.archive-preview, .archive-entry, .archive-certificate, .about-copy';
+  const tiltSelector = '.archive-preview, .archive-entry:not(.writeup-case), .archive-certificate, .about-copy';
   function attachTilt(card) {
     if (card.classList.contains('glass-tilt')) return;
     card.classList.add('glass-tilt');

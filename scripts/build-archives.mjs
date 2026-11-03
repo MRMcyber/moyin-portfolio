@@ -42,6 +42,16 @@ for (const [key, page] of Object.entries(pages)) {
         ${url ? `<a class="text-link" ${external} aria-label="View ${escape(item.title)} credential (opens in a new tab)">View credential <span aria-hidden="true">↗</span></a>` : ''}</div>
       </article>`;
     }
+    if (key === 'writeups' && item.findings?.length) {
+      return `<article class="archive-entry writeup-case" id="${id}">
+        <div class="archive-entry-meta"><div class="resource-brand">${mark}<span>${number} / CASE SUMMARY</span></div><span>SECURITY RESEARCH</span></div>
+        <h2>${escape(item.title)}</h2><p class="writeup-overview">${escape(item.description)}</p>
+        <dl class="finding-metadata">${[['Severity', item.severity], ['Bug class', item.bugClass], ['Remediation', item.remediation]].map(([label, value]) => `<div><dt>${label}</dt><dd>${escape(value || 'Not specified')}</dd></div>`).join('')}</dl>
+        <div class="writeup-findings">${item.findings.map((finding, i) => `<section class="writeup-finding"><span class="eyebrow">FINDING ${String(i + 1).padStart(2, '0')}</span><h3>${escape(finding.title)}</h3><p>${escape(finding.description)}</p><h4>Impact</h4><p>${escape(finding.impact)}</p></section>`).join('')}</div>
+        <section class="writeup-disclosure"><h3>Disclosure &amp; remediation</h3><ol>${(item.disclosure || []).map(step => `<li>${escape(step)}</li>`).join('')}</ol><p>${escape(item.remediationNote)}</p></section>
+        ${url ? `<a class="text-link" ${external} aria-label="Read full writeup on Notion (opens in a new tab)">Read full writeup on Notion <span aria-hidden="true">&#8599;</span></a>` : ''}
+      </article>`;
+    }
     return `<article class="archive-entry" id="${id}">
       <div class="archive-entry-meta"><div class="resource-brand">${mark}<span>${number} / ${escape(item.source || key.toUpperCase())}</span></div><span aria-hidden="true">↗</span></div>
       <h2>${escape(item.title)}</h2><p>${escape(item.description)}</p>

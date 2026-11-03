@@ -33,6 +33,8 @@ This file drives all the dynamic content on the site.
 - `demo` (string) — Optional live-site link
 
 ### Writeup / Note object
+- Writeups may also include `severity`, `bugClass`, `remediation`, and `remediationNote`. Attribute severity to the source; do not infer a CVSS score or a fix status.
+- `findings` is an optional array of `{ title, description, impact }` objects for a local case summary. `disclosure` is an array of published timeline steps. These render on the writeups page before the original article link.
 - `title` (string) — Entry title
 - `description` (string) — Short summary
 - `url` (string) — Link to the full writeup/note

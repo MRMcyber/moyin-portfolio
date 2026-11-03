@@ -415,7 +415,12 @@ function renderEntries(type, selector, title, description) {
     a.className = 'entry-link';
     a.href = type + '.html#' + encodeURIComponent(item.id || type + '-' + (index + 1));
     a.innerHTML = brandMark(item) + `<div class="entry-copy"><h3>${escapeHTML(item.title)}</h3>`
-      + `<p>${escapeHTML(item.description || '')}</p></div>`
+      + `<p>${escapeHTML(item.description || '')}</p>`
+      + (type === 'writeups' && item.severity ? '<dl class="finding-metadata finding-metadata-compact">'
+        + [['Severity', item.severity], ['Bug class', item.bugClass], ['Remediation', item.remediation]]
+          .map(([label, value]) => '<div><dt>' + label + '</dt><dd>' + escapeHTML(value || 'Not specified') + '</dd></div>').join('')
+        + '</dl><span class="writeup-preview-cta">READ CASE SUMMARY <span aria-hidden="true">&#8599;</span></span>' : '')
+      + '</div>'
       + `<span aria-hidden="true">↗</span>`;
 
     if (a.origin !== location.origin) {
@@ -975,7 +980,7 @@ updateMotion();
     revealObserver.observe(element);
   });
 
-  const tiltSelector = '.archive-preview, .archive-entry, .archive-certificate, .about-copy';
+  const tiltSelector = '.archive-preview, .archive-entry:not(.writeup-case), .archive-certificate, .about-copy';
   function attachTilt(card) {
     if (card.classList.contains('glass-tilt')) return;
     card.classList.add('glass-tilt');
