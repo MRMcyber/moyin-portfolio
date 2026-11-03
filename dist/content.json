@@ -1,5 +1,5 @@
 {
-  "contact": "secfortress40@gmail.com",
+  "contact": "mrmsec40@gmail.com",
   "certifications": [
     {
       "id": "ccep",
@@ -12,7 +12,46 @@
       "url": "https://courses.redteamleaders.com/exam-completion/0805c41717208dc5"
     }
   ],
-  "projects": [],
+  "projects": [
+    {
+      "title": "Subenum",
+      "summary": "Subdomain discovery, brought together.",
+      "category": "RECONNAISSANCE / PYTHON",
+      "description": "A modular reconnaissance pipeline that brings passive subdomain discovery, optional active DNS enumeration, HTTP probing, and web crawling into one workflow for security researchers.",
+      "features": [
+        "Combines multiple discovery tools and sources",
+        "Enriches results with DNS records and web metadata",
+        "Organizes live hosts and scan artifacts into structured reports"
+      ],
+      "url": "https://github.com/MRMcyber/Subenum"
+    },
+    {
+      "title": "CACTF",
+      "summary": "Learn web security by finding the flaws.",
+      "category": "SECURITY LAB / JAVASCRIPT",
+      "description": "An intentionally vulnerable web security lab with 16 capture-the-flag challenges. Practice finding flaws in authentication, access controls, input handling, and application logic.",
+      "features": [
+        "16 challenges covering SQL injection, XSS, IDOR, and more",
+        "Capture flags and track progress on the scoreboard",
+        "Persistent player progress backed by Postgres"
+      ],
+      "url": "https://github.com/MRMcyber/CACTF",
+      "demo": "https://cactf.vercel.app"
+    },
+    {
+      "title": "ISC2 CC Prep",
+      "summary": "Practice, review, and find your weak spots.",
+      "category": "STUDY TOOL / JAVASCRIPT",
+      "description": "An independent study app for the ISC2 Certified in Cybersecurity certification. Switch between timed practice exams and untimed study sessions, then review explanations and performance across five domains.",
+      "features": [
+        "Choose 50 or 100 questions with shuffled answers",
+        "Review answers with detailed explanations",
+        "See domain scores and focused study suggestions"
+      ],
+      "url": "https://github.com/MRMcyber/isc-cc-prep",
+      "demo": "https://isc-cc-prep.vercel.app"
+    }
+  ],
   "writeups": [
     {
       "id": "two-critical-vulnerabilities",

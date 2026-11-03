@@ -861,6 +861,27 @@ nav > a:hover {
   overflow: hidden;
 }
 
+.project-details {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #ffffff26;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #151515e6, #070707f5);
+  box-shadow: 0 16px 48px #0008;
+  overflow: hidden;
+}
+.project-details .window-bar { border-color: #ffffff14; }
+.project-details-body { padding: clamp(22px, 3vw, 36px); }
+.project-category { font: 9px var(--mono); letter-spacing: .12em; color: #94b39e; }
+.project-details h3 { margin: 18px 0 14px; font-size: clamp(24px, 3vw, 36px); font-weight: 450; letter-spacing: -.035em; }
+.project-details p { margin: 0; color: #b1b1b1; font-size: 14px; line-height: 1.75; }
+.project-details ul { padding-left: 18px; margin: 22px 0 28px; color: #c4c4c4; font-size: 12px; line-height: 1.7; }
+.project-details li + li { margin-top: 8px; }
+.project-details li::marker { color: #759c80; }
+.project-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.project-actions .button { gap: 10px; padding: 13px 16px; font-size: 11px; }
+.project-actions img { flex-shrink: 0; }
+
 /* Clickable image button */
 .project-image-button {
   background: #090d0a;

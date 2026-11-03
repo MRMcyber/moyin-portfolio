@@ -24,8 +24,13 @@ This file drives all the dynamic content on the site.
 
 ### Project object
 - `title` (string) — Project name
-- `image` (string) — Path to project screenshot
-- `description` (string) — Short description shown in the tab
+- `image` (string) — Optional screenshot for image-only entries
+- `summary` (string) — Short subtitle shown in the project tab
+- `description` (string) — Full description shown in the preview panel
+- `category` (string) — Project type and language label
+- `features` (array of strings) — Key capabilities
+- `url` (string) — Repository link; enables the project details panel
+- `demo` (string) — Optional live-site link
 
 ### Writeup / Note object
 - `title` (string) — Entry title

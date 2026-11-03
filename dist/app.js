@@ -142,7 +142,7 @@ function openImage(src, title) {
  * Each key maps to a section of the site.
  */
 let content = {
-  contact: 'secfortress40@gmail.com', // Email or URL for the contact dialog
+  contact: 'mrmsec40@gmail.com', // Email or URL for the contact dialog
   certifications: [],     // Array of { title, image }
   projects: [],           // Array of { title, image, description }
   writeups: [],           // Array of { title, url, description }
@@ -287,7 +287,7 @@ function renderProject(index = 0, focus = false) {
     button.tabIndex = i === index ? 0 : -1;
     button.innerHTML = `<span>${String(i + 1).padStart(2, '0')}</span>`
       + `<div><strong>${escapeHTML(item.title)}</strong>`
-      + `<small>${escapeHTML(item.description || 'View project images')}</small></div>`;
+      + `<small>${escapeHTML(item.summary || item.description || 'View project images')}</small></div>`;
 
     // Click to select this project
     button.addEventListener('click', () => renderProject(i, true));
@@ -306,10 +306,35 @@ function renderProject(index = 0, focus = false) {
     tabs.append(button);
   });
 
-  // Show the selected project's image in the preview panel
+  // Show repository details, or retain the image preview for uploaded projects.
   const item = content.projects[index];
   panel.setAttribute('aria-labelledby', 'project-tab-' + index);
 
+  if (item.url) {
+    const card = document.createElement('article');
+    card.className = 'project-details';
+    card.innerHTML = '<div class="window-bar"><i></i><i></i><i></i><span>MRMcyber / projects</span></div>'
+      + '<div class="project-details-body"><span class="project-category">' + escapeHTML(item.category || 'PROJECT') + '</span>'
+      + '<h3>' + escapeHTML(item.title) + '</h3><p>' + escapeHTML(item.description) + '</p>'
+      + (item.features?.length ? '<ul>' + item.features.map(feature => '<li>' + escapeHTML(feature) + '</li>').join('') + '</ul>' : '')
+      + '<div class="project-actions"></div></div>';
+    const actions = card.querySelector('.project-actions');
+    for (const [url, label, github] of [[item.url, 'View on GitHub', true], [item.demo, 'Open live site', false]]) {
+      if (!url) continue;
+      const href = safeURL(url);
+      if (!/^https?:/.test(href)) continue;
+      const link = document.createElement('a');
+      link.className = 'button secondary';
+      link.href = href;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.innerHTML = (github ? '<img src="assets/github.svg" alt="" width="20" height="20">' : '')
+        + label + ' <span aria-hidden="true">&#8599;</span>';
+      link.setAttribute('aria-label', label + ': ' + item.title + ' (opens in a new tab)');
+      actions.append(link);
+    }
+    panel.append(card);
+  } else if (item.image) {
   const b = document.createElement('button');
   b.className = 'project-image-button';
   b.setAttribute('aria-label', 'Enlarge ' + item.title);
@@ -322,6 +347,7 @@ function renderProject(index = 0, focus = false) {
   b.append(img);
   b.addEventListener('click', () => openImage(item.image, item.title));
   panel.append(b);
+  }
 
   // Focus the tab if triggered by keyboard
   if (focus) $('#project-tab-' + index).focus();
