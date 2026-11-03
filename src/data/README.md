@@ -34,7 +34,7 @@ This file drives all the dynamic content on the site.
 
 ### Writeup / Note object
 - Writeups may also include `severity`, `bugClass`, `remediation`, and `remediationNote`. Attribute severity to the source; do not infer a CVSS score or a fix status.
-- `findings` is an optional array of `{ title, description, impact }` objects for a local case summary. `disclosure` is an array of published timeline steps. These render on the writeups page before the original article link.
+- `findings` is an optional array of `{ title, description, impact }` objects for a local case summary. `disclosure` is an array of published timeline steps. These render inside a collapsed "Expand details" section on the writeups page, along with `overview` and the severity/status fields. The short `description` remains visible on the homepage and archive card.
 - `title` (string) — Entry title
 - `description` (string) — Short summary
 - `url` (string) — Link to the full writeup/note

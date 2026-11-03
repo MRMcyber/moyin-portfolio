@@ -5,12 +5,13 @@
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 100px;
+  grid-template-columns: minmax(230px, .75fr) minmax(0, 1.6fr);
+  gap: 64px;
 }
 
 .about-copy {
-  max-width: 470px;
+  max-width: none;
+  min-width: 0;
   padding-top: 4px;
 }
 
