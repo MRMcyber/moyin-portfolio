@@ -335,18 +335,18 @@ function renderProject(index = 0, focus = false) {
     }
     panel.append(card);
   } else if (item.image) {
-  const b = document.createElement('button');
-  b.className = 'project-image-button';
-  b.setAttribute('aria-label', 'Enlarge ' + item.title);
+    const b = document.createElement('button');
+    b.className = 'project-image-button';
+    b.setAttribute('aria-label', 'Enlarge ' + item.title);
 
-  const img = document.createElement('img');
-  img.src = item.image;
-  img.alt = item.title;
-  img.width = 900;
-  img.height = 600;
-  b.append(img);
-  b.addEventListener('click', () => openImage(item.image, item.title));
-  panel.append(b);
+    const img = document.createElement('img');
+    img.src = item.image;
+    img.alt = item.title;
+    img.width = 900;
+    img.height = 600;
+    b.append(img);
+    b.addEventListener('click', () => openImage(item.image, item.title));
+    panel.append(b);
   }
 
   // Focus the tab if triggered by keyboard
