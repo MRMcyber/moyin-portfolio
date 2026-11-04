@@ -94,6 +94,14 @@
       "url": "https://mature-brand-6cc.notion.site/HTB-notes-35e3eb37955980b98313f92bfcb6e292?pvs=74"
     },
     {
+      "id": "htb-machines",
+      "title": "HTB machines",
+      "logo": "assets/htb.svg",
+      "description": "My notes on Hack The Box machines.",
+      "source": "MY NOTES / NOTION",
+      "url": "https://app.notion.com/p/HTB-Machines-40e3eb379559805a9d54e6ba73f3d9f9?source=copy_link"
+    },
+    {
       "id": "pentesting-methodology",
       "title": "Pentesting methodology",
       "logo": "assets/hacktricks.svg",
